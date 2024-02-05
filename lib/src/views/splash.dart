@@ -20,62 +20,15 @@ class SplashScreenWidget extends StatelessWidget {
           mainAxisAlignment:MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+      GestureDetector(
+        onTap: () {
+          
+        },
+        child:
       Image.network( AssetsPath.splashnet
 
         ),
-        SizedBox(
-          height: 40,
-        ),
-            Image.network( AssetsPath.Splashnet1
-
-        ),
-
-       SizedBox(
-          height: 40,
-        ), 
-        Image.network( AssetsPath.Splashnet2
-
-        ),
-         
-        
-              SizedBox(
-          height: 40,
-        ),
-        Image.network( AssetsPath.Splashnet4
-
-        ),
-        SizedBox(
-          height: 40,
-        ),
-                Image.network( AssetsPath.Splashnet5
-
-        ),
-
-
-        
-      Image.asset( AssetsPath.splashLogo1
-
-        ),
-        
-        Image.asset( AssetsPath.splashLogo2
-
-        ),
-         Image.asset( AssetsPath.splashLogo3
-
-        ),
-         Image.asset( AssetsPath.splashLogo4
-
-        ),
-         Image.asset( AssetsPath.splashLogo5
-
-        ),
-         Image.asset( AssetsPath.splashLogo6
-
-        ),
-        ],
-        
-        
-        )
+           )   ] )
         )
       ),
     );
