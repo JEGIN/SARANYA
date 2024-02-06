@@ -28,6 +28,7 @@ class SplashScreenWidget extends StatelessWidget {
       Image.network( AssetsPath.splashnet
 
         ),
+        
            )   ] )
         )
       ),
