@@ -52,13 +52,10 @@ class _GridViewWidgetState extends State<GridViewWidget> {
   }
 
   Widget dynamicImageWidget(data) {
-    print(data["image"]);
-    String dataImage = data["image"];
-    print(dataImage[0]);
-
-    if (dataImage[0] == "h") {
-      
+    if (data['image'].startsWith('https')) {
+      return Image.network(data['image']);
+    } else {
+      return Image.asset(data['image']);
     }
-    return Image.network(AssetsPath.splashnet);
   }
 }
