@@ -4,25 +4,23 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../../global/assets_urls.dart';
 
-class WalkthroughInitialScreenWidget extends StatefulWidget {
-  const WalkthroughInitialScreenWidget({super.key});
+class WalkthroughTwoScreen extends StatefulWidget {
+  const WalkthroughTwoScreen({super.key});
 
   @override
-  State<WalkthroughInitialScreenWidget> createState() => _WalkthroughInitialScreenWidgetState();
+  State<WalkthroughTwoScreen> createState() => _WalkthroughTwoScreenState();
 }
 
-class _WalkthroughInitialScreenWidgetState extends State<WalkthroughInitialScreenWidget> {
+class _WalkthroughTwoScreenState extends State<WalkthroughTwoScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.transparent,
 
       body:Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(AssetsPath.walkthroughOne),fit: BoxFit.fill)),
-         
+          image: DecorationImage(image: AssetImage(AssetsPath.walkthroughTwo),fit: BoxFit.fill)),
       )
     );
   }
