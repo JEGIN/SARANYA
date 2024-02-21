@@ -10,7 +10,7 @@ class AssetsPath {
       "https://previews.123rf.com/images/elnur/elnur1112/elnur111202053/11571858-circle-with-lots-of-food-items.jpg";
   static const String Splashnet5=
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmuQqgzB2Mr_729HNHlShyFV0F_J4eEDx5iFsON-UUdcW-iRQGFsbxSvTfMHdF3-elz84&usqp=CAU";
-
+static const String Walkthrough="https://png.pngtree.com/png-vector/20220804/ourmid/pngtree-gamer-in-headset-with-laptop-recording-video-game-walkthrough-png-image_5737402.png";
   // LOGO
   static const String splashLogo1 = "assets/image/swiggy.png";
   static const String splashLogo2 = "assets/image/food.png";
