@@ -18,5 +18,9 @@ static const String Walkthrough="https://png.pngtree.com/png-vector/20220804/our
 static const String splashLogo4 = "assets/image/food3.png";
 static const String splashLogo5 = "assets/image/images.png";
 static const String splashLogo6 = "assets/image/images1.png";
+static const String walkthroughOne = "assets/image/onboarding_screen_1.png";
+static const String walkthroughTwo = "assets/image/onboarding_screen_2.png";
+static const String walkthroughThree = "assets/image/onboarding_screen_3.png";
+
 
 }

@@ -5,7 +5,7 @@
 
 
 import 'package:application1/src/views/gridview.dart';
-import 'package:application1/src/views/new_walkthrough.dart';
+
 import 'package:application1/src/views/userprofile.dart';
 
 import 'global/app_urls.dart';

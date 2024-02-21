@@ -20,7 +20,7 @@ class _WalkthroughInitialScreenWidgetState extends State<WalkthroughInitialScree
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(AssetsPath.Walkthrough),fit: BoxFit.fill)),
+          image: DecorationImage(image: AssetImage(AssetsPath.walkthroughOne),fit: BoxFit.fill)),
       )
     );
   }
