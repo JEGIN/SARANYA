@@ -22,31 +22,7 @@ class _WalkthroughThreeScreenState extends State<WalkthroughThreeScreen> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(AssetsPath.walkthroughThree),fit: BoxFit.fill)),
-           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-           child: 
-          GestureDetector(
-            onTap: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreenWidget()));
-            },
-          
-           
-        child:     Container(
-                height: MediaQuery.of(context).size.height*0.06,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white
-                ),
-                child: Center(
-                  child: Text("Get Started",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                ),
-              )))
-            ]
-          ),
+        
       )
     );
   }
