@@ -12,6 +12,9 @@ class LoginScreenWidget extends StatefulWidget {
 }
 
 class _LoginScreenWidgetState extends State<LoginScreenWidget> {
+TextEditingController  loginController =TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -37,7 +40,34 @@ Row(
       ),
     
   ],
-)
+),
+   SizedBox(
+    height: 30,
+   ) ,
+   Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+   child:
+   TextFormField(
+    keyboardType: TextInputType.emailAddress,
+    controller: loginController,
+    validator: (value!)
+      if(value.isEmpty){
+        return "Please fill the emailid"
+    },
+    decoration:InputDecoration(
+      labelText: "Email",
+  
+      labelStyle: TextStyle(
+        fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
+      ),
+      border: OutlineInputBorder(
+           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+
+      )
+
+    ),
+   )
+   )
+
         ],),
       )
     );
