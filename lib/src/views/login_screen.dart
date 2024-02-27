@@ -13,6 +13,7 @@ class LoginScreenWidget extends StatefulWidget {
 
 class _LoginScreenWidgetState extends State<LoginScreenWidget> {
 TextEditingController  loginController =TextEditingController();
+TextEditingController  passwordController =TextEditingController();
 GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
 
@@ -73,6 +74,34 @@ Row(
     
     decoration:InputDecoration(
       labelText: "Email",
+  
+      labelStyle: TextStyle(
+        fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
+      ),
+      border: OutlineInputBorder(
+           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+
+      )
+
+    ),
+   )
+   ),
+   SizedBox(
+    height: 30,
+   ) ,
+   Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+   child:
+   TextFormField(
+    keyboardType: TextInputType.visiblePassword,
+    controller: passwordController,
+    validator: (value){
+       
+    },
+     
+    
+    decoration:InputDecoration(
+      suffixIcon:Icon(Icons.visibility_off),
+      labelText: "Password",
   
       labelStyle: TextStyle(
         fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
