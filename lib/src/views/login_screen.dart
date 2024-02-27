@@ -15,6 +15,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
 TextEditingController  loginController =TextEditingController();
 TextEditingController  passwordController =TextEditingController();
 GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
+bool isVisible = false;
 
 
   @override
@@ -93,14 +94,26 @@ Row(
    child:
    TextFormField(
     keyboardType: TextInputType.visiblePassword,
+    obscureText:  isVisible? false : true,
     controller: passwordController,
     validator: (value){
-       
+       if(value!.isNotEmpty){
+        if(value.length<6){
+          return "Password should be greater than 6 characters";
+        }
+       }else{
+        return "Please fill the password";
+       }
     },
      
     
     decoration:InputDecoration(
-      suffixIcon:Icon(Icons.visibility_off),
+      suffixIcon: GestureDetector(onTap: (){
+        setState(() {
+          isVisible = !isVisible;
+          print(isVisible);
+        });
+      }, child: isVisible? Icon(Icons.visibility): Icon(Icons.visibility_off)),
       labelText: "Password",
   
       labelStyle: TextStyle(
@@ -116,20 +129,31 @@ Row(
    ),
 
    SizedBox(height: 100,),
+   Padding(padding: EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
+child:
 
-
-   TextButton(onPressed: (){
-
+InkWell(
+  onTap: (){
     if(_loginKey.currentState!.validate()){
        print("validate");
     }else{
       print("not validate");
     }
+  },
 
-    
+child:Container(
+  height: 50,
+  width: MediaQuery.of(context).size.width,
+  decoration: BoxDecoration(
+    color: Colors.orangeAccent,
+    borderRadius: BorderRadius.circular(10)
 
-
-   }, child: Text("Login"))
+  ),
+  child: Center(
+    child:Text('Login',style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold,color: Colors.white),)
+  ),
+))),
+  
 
         ],),
       )
