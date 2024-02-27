@@ -13,12 +13,24 @@ class LoginScreenWidget extends StatefulWidget {
 
 class _LoginScreenWidgetState extends State<LoginScreenWidget> {
 TextEditingController  loginController =TextEditingController();
+GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body:Container(
+    return 
+    Form( 
+      key: _loginKey,
+      
+      child: 
+
+
+    
+     Scaffold(
+      body:
+      
+      
+      Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
@@ -49,10 +61,16 @@ Row(
    TextFormField(
     keyboardType: TextInputType.emailAddress,
     controller: loginController,
-    validator: (value!)
-      if(value.isEmpty){
-        return "Please fill the emailid"
+    validator: (value){
+       bool isValid = EmailValidator.validate(value!);
+      if(value!.isEmpty){
+        return "Please fill the emailid";
+      }else if(isValid==false){
+        return 'Please enter a valid email';
+      }
     },
+     
+    
     decoration:InputDecoration(
       labelText: "Email",
   
@@ -66,10 +84,26 @@ Row(
 
     ),
    )
-   )
+   ),
+
+   SizedBox(height: 100,),
+
+
+   TextButton(onPressed: (){
+
+    if(_loginKey.currentState!.validate()){
+       print("validate");
+    }else{
+      print("not validate");
+    }
+
+    
+
+
+   }, child: Text("Login"))
 
         ],),
       )
-    );
+    ));
   }
 }
