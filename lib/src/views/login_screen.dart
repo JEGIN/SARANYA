@@ -104,9 +104,21 @@ Row(
     validator: (value){
       if (value!.isEmpty) {
                 return 'Password is required';
-              } else if (!RegExp(r'^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[!@#$%^&*()_+]).+$').hasMatch(value)) {
-                return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-}
+              } else if (isLowerCase == false) {
+                return 'Password must contain at least one lowercase letter';
+              } else if (isUpperCase == false) {
+                return 'Password must contain at least one uppercase letter';
+              } else if (isDigit == false) {
+                return 'Password must contain at least one digit';
+              } else if (isSpecialChar == false) {
+                return 'Password must contain at least one special character';
+              }
+},
+    
+    onChanged: (value) {
+      setState(() {
+        _validatePassword(value);
+      });
     },
      
     
