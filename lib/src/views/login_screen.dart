@@ -16,6 +16,10 @@ TextEditingController  loginController =TextEditingController();
 TextEditingController  passwordController =TextEditingController();
 GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 bool isVisible = false;
+bool isUpperCase = false;
+bool isLowerCase = false;
+bool isDigit = false;
+bool isSpecialChar = false;
 
 
   @override
@@ -74,6 +78,7 @@ Row(
      
     
     decoration:InputDecoration(
+      suffixIcon: Icon(Icons.mail),
       labelText: "Email",
   
       labelStyle: TextStyle(
@@ -97,13 +102,11 @@ Row(
     obscureText:  isVisible? false : true,
     controller: passwordController,
     validator: (value){
-       if(value!.isNotEmpty){
-        if(value.length<6){
-          return "Password should be greater than 6 characters";
-        }
-       }else{
-        return "Please fill the password";
-       }
+      if (value!.isEmpty) {
+                return 'Password is required';
+              } else if (!RegExp(r'^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[!@#$%^&*()_+]).+$').hasMatch(value)) {
+                return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+}
     },
      
     
@@ -140,7 +143,6 @@ InkWell(
       print("not validate");
     }
   },
-
 child:Container(
   height: 50,
   width: MediaQuery.of(context).size.width,
@@ -157,6 +159,20 @@ child:Container(
 
         ],),
       )
+   
     ));
   }
+  void _validatePassword(String password) {
+    setState(() {
+      isUpperCase = password.contains(RegExp(r'[A-Z]'));
+      isLowerCase = password.contains(RegExp(r'[a-z]'));
+      isDigit = password.contains(RegExp(r'\d'));
+      isSpecialChar = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+      // passwordsMatch = password == confirmPassword;
+      print( 'Upper ' + isUpperCase.toString());
+      print( 'Lower ' + isLowerCase.toString());
+      print( 'Upper ' + isDigit.toString());
+      print( 'Upper ' + isSpecialChar.toString());
+});
+}
 }
