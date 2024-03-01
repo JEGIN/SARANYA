@@ -1,4 +1,5 @@
 import 'package:application1/global/app_urls.dart';
+
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
@@ -20,6 +21,7 @@ bool isUpperCase = false;
 bool isLowerCase = false;
 bool isDigit = false;
 bool isSpecialChar = false;
+// RegExp regex = RegExp( );
 
 
   @override
@@ -42,10 +44,10 @@ bool isSpecialChar = false;
         color: Colors.white,
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            SizedBox(height: 50,),
+            // SizedBox(height: 50,),
 Row(
   mainAxisAlignment: MainAxisAlignment.center,
   mainAxisSize: MainAxisSize.max,
@@ -60,29 +62,27 @@ Row(
   ],
 ),
    SizedBox(
-    height: 30,
+    height: 100,
    ) ,
-   Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+    Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
    child:
    TextFormField(
-    keyboardType: TextInputType.emailAddress,
+    keyboardType: TextInputType.phone,
     controller: loginController,
     validator: (value){
-       bool isValid = EmailValidator.validate(value!);
+      
       if(value!.isEmpty){
-        return "Please fill the emailid";
-      }else if(isValid==false){
-        return 'Please enter a valid email';
+        return "Please enter mobile number";
       }
     },
      
     
     decoration:InputDecoration(
-      suffixIcon: Icon(Icons.mail),
-      labelText: "Email",
+      suffixIcon: Icon(Icons.phone),
+      labelText: "Mobile number",
   
       labelStyle: TextStyle(
-        fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
+        fontSize: 18,fontWeight: FontWeight.normal,color: Colors.grey.shade400
       ),
       border: OutlineInputBorder(
            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -92,56 +92,86 @@ Row(
     ),
    )
    ),
-   SizedBox(
-    height: 30,
-   ) ,
-   Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-   child:
-   TextFormField(
-    keyboardType: TextInputType.visiblePassword,
-    obscureText:  isVisible? false : true,
-    controller: passwordController,
-    validator: (value){
-      if (value!.isEmpty) {
-                return 'Password is required';
-              } else if (isLowerCase == false) {
-                return 'Password must contain at least one lowercase letter';
-              } else if (isUpperCase == false) {
-                return 'Password must contain at least one uppercase letter';
-              } else if (isDigit == false) {
-                return 'Password must contain at least one digit';
-              } else if (isSpecialChar == false) {
-                return 'Password must contain at least one special character';
-              }
-},
-    
-    onChanged: (value) {
-      setState(() {
-        _validatePassword(value);
-      });
-    },
+  //  Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+  //  child:
+  //  TextFormField(
+  //   keyboardType: TextInputType.emailAddress,
+  //   controller: loginController,
+  //   validator: (value){
+  //      bool isValid = EmailValidator.validate(value!);
+  //     if(value!.isEmpty){
+  //       return "Please fill the emailid";
+  //     }else if(isValid==false){
+  //       return 'Please enter a valid email';
+  //     }
+  //   },
      
     
-    decoration:InputDecoration(
-      suffixIcon: GestureDetector(onTap: (){
-        setState(() {
-          isVisible = !isVisible;
-          print(isVisible);
-        });
-      }, child: isVisible? Icon(Icons.visibility): Icon(Icons.visibility_off)),
-      labelText: "Password",
+  //   decoration:InputDecoration(
+  //     suffixIcon: Icon(Icons.mail),
+  //     labelText: "Email",
   
-      labelStyle: TextStyle(
-        fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
-      ),
-      border: OutlineInputBorder(
-           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+  //     labelStyle: TextStyle(
+  //       fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
+  //     ),
+  //     border: OutlineInputBorder(
+  //          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
 
-      )
+  //     )
 
-    ),
-   )
-   ),
+  //   ),
+  //  )
+  //  ),
+//    SizedBox(
+//     height: 30,
+//    ) ,
+//    Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+//    child:
+//    TextFormField(
+//     keyboardType: TextInputType.visiblePassword,
+//     obscureText:  isVisible? false : true,
+//     controller: passwordController,
+//     validator: (value){
+//       if (value!.isEmpty) {
+//                 return 'Password is required';
+//               } else if (isLowerCase == false) {
+//                 return 'Password must contain at least one lowercase letter';
+//               } else if (isUpperCase == false) {
+//                 return 'Password must contain at least one uppercase letter';
+//               } else if (isDigit == false) {
+//                 return 'Password must contain at least one digit';
+//               } else if (isSpecialChar == false) {
+//                 return 'Password must contain at least one special character';
+//               }
+// },
+    
+//     onChanged: (value) {
+//       setState(() {
+//         _validatePassword(value);
+//       });
+//     },
+     
+    
+//     decoration:InputDecoration(
+//       suffixIcon: GestureDetector(onTap: (){
+//         setState(() {
+//           isVisible = !isVisible;
+//           print(isVisible);
+//         });
+//       }, child: isVisible? Icon(Icons.visibility): Icon(Icons.visibility_off)),
+//       labelText: "Password",
+  
+//       labelStyle: TextStyle(
+//         fontSize: 26,fontWeight: FontWeight.bold,color: Colors.blueAccent
+//       ),
+//       border: OutlineInputBorder(
+//            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+
+//       )
+
+//     ),
+//    )
+//    ),
 
    SizedBox(height: 100,),
    Padding(padding: EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
@@ -151,6 +181,7 @@ InkWell(
   onTap: (){
     if(_loginKey.currentState!.validate()){
        print("validate");
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OTPScreenWidget()));
     }else{
       print("not validate");
     }
@@ -180,6 +211,7 @@ child:Container(
       isLowerCase = password.contains(RegExp(r'[a-z]'));
       isDigit = password.contains(RegExp(r'\d'));
       isSpecialChar = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+    
       // passwordsMatch = password == confirmPassword;
       print( 'Upper ' + isUpperCase.toString());
       print( 'Lower ' + isLowerCase.toString());
