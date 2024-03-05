@@ -73,6 +73,14 @@ Row(
       
       if(value!.isEmpty){
         return "Please enter mobile number";
+
+      }else if(value.isNotEmpty){
+        String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    RegExp regExp = RegExp(pattern);
+    if (!regExp.hasMatch(value)) {
+      return 'Please enter a valid mobile number.';
+    }
+    return null;
       }
     },
      

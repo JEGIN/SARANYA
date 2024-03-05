@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 import '../../../global/app_urls.dart';
 import '../login_screen.dart';
 
@@ -130,6 +123,7 @@ class _WalkthroughMainScreenWidgetState extends State<WalkthroughMainScreenWidge
                   
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
+
                       color: Colors.white
                     ),
 
