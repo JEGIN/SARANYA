@@ -1,22 +1,23 @@
+import 'package:application1/src/views/dashboard/home_screen.dart';
 
 import '../../../global/app_urls.dart';
 import '../login_screen.dart';
 
-class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({super.key});
+class DashboardScreenWidget extends StatefulWidget {
+  const DashboardScreenWidget({super.key});
 
   @override
-  State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
+  State<DashboardScreenWidget> createState() =>
+      _DashboardScreenWidgetState();
 }
 
-class _BottomNavigationBarExampleState
-    extends State<BottomNavigationBarExample> {
+class _DashboardScreenWidgetState
+    extends State<DashboardScreenWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  List<Widget> _widgetOptions = <Widget>[
-    LoginScreenWidget(),
+  static List<Widget> _widgetOptions = <Widget>[
+    CarouselWithIndicatorDemo(),
     Text(
       'Index 1: Business',
       style: optionStyle,
@@ -51,25 +52,25 @@ class _BottomNavigationBarExampleState
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,color: Colors.black45,size: 24),
-            activeIcon:Icon(Icons.home,color: Colors.amberAccent,size: 30),
+            icon: Icon(Icons.home, color: Colors.black45, size: 24),
+            activeIcon: Icon(Icons.home, color: Colors.amberAccent, size: 30),
             label: 'Home',
-
           ),
           BottomNavigationBarItem(
-            
-            icon: Icon(Icons.business,color: Colors.black45,size: 24),
-            activeIcon:Icon(Icons.business,color: Colors.amberAccent,size: 30),
+            icon: Icon(Icons.business, color: Colors.black45, size: 24),
+            activeIcon:
+                Icon(Icons.business, color: Colors.amberAccent, size: 30),
             label: 'Business',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school,color: Colors.black45,size: 24),
-            activeIcon:Icon(Icons.school,color: Colors.amberAccent,size: 30),
+            icon: Icon(Icons.school, color: Colors.black45, size: 24),
+            activeIcon: Icon(Icons.school, color: Colors.amberAccent, size: 30),
             label: 'School',
           ),
-           BottomNavigationBarItem(
-             icon: Icon(Icons.settings,color: Colors.black45,size: 24),
-            activeIcon:Icon(Icons.settings,color: Colors.amberAccent,size: 30),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, color: Colors.black45, size: 24),
+            activeIcon:
+                Icon(Icons.settings, color: Colors.amberAccent, size: 30),
             label: 'Settings',
           ),
         ],
@@ -77,8 +78,6 @@ class _BottomNavigationBarExampleState
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-);
+    );
+  }
 }
-}
-
-

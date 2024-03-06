@@ -1,5 +1,3 @@
-
-
 /// Packages
 
 export 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -16,10 +14,9 @@ export 'package:application1/src/views/walkthrough/walkthrough_intial.dart';
 export 'package:application1/src/views/walkthrough/walk_two.dart';
 export 'package:application1/src/views/walkthrough/walk_three.dart';
 export 'package:application1/src/views/otp_screen.dart';
+export 'package:application1/src/views/dashboard/dashboard.dart';
 
-
-/// Packages 
-
+/// Packages
 
 export 'package:email_validator/email_validator.dart';
 

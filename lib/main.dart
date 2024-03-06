@@ -4,6 +4,8 @@
 
 
 
+
+import 'package:application1/src/views/carousal.dart';
 import 'package:application1/src/views/gridview.dart';
 import 'package:application1/src/views/japantravelmain.dart';
 import 'package:application1/src/views/login_screen.dart';
@@ -11,7 +13,6 @@ import 'package:application1/src/views/login_screen.dart';
 import 'package:application1/src/views/userprofile.dart';
 
 import 'global/app_urls.dart';
-import 'src/views/walkthrough/dashboard.dart';
 
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavigationBarExample(),
+      home: DashboardScreenWidget(),
 
       theme: ThemeData(primarySwatch: Colors.deepPurple),
     );
