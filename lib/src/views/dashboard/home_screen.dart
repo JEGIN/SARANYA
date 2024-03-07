@@ -22,14 +22,38 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
 
+  List offerList = [
+    {
+      'offers': 'Min ₹ 100 off',
+      'deals': 'Flat deals',
+    },
+    {
+      'offers': 'Pocket Hero',
+      'deals': '60% off + Cashback',
+    },
+    {
+      'offers': 'Flash Sale',
+      'deals': 'Free delivery',
+    },
+    {
+      'offers': 'All offers',
+      'deals': '60% off and more',
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
               child: Container(
-                margin: EdgeInsets.all(5.0),
+                margin: const EdgeInsets.all(5.0),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     child: Stack(
                       children: <Widget>[
                         Image.network(item, fit: BoxFit.cover, width: 1000.0),
@@ -38,7 +62,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                           left: 0.0,
                           right: 0.0,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
                                   Color.fromARGB(200, 0, 0, 0),
@@ -48,11 +72,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                                 end: Alignment.topCenter,
                               ),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 20.0),
                             child: Text(
                               'No. ${imgList.indexOf(item)} image',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -93,7 +117,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (Theme.of(context).brightness == Brightness.dark
@@ -104,14 +128,14 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             );
           }).toList(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 20),
             child: Row(
               children: [
-                Text(
+                const Text(
                   'BEST OFFERS FOR YOU',
                   style: TextStyle(
                       fontSize: 14,
@@ -123,70 +147,127 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         const SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              height: 70,
-              // width: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 2.5,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10),
+              itemCount: offerList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return offerWidget(offerList[index]);
+              }),
+        ),
+          const SizedBox(
+          height: 20,
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: [
+                const Text(
+                  'TOP RATED NEAR YOU',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38),
                 ),
-                gradient: LinearGradient(
-                    colors: [Color(0xfffcebf3), Color(0xfffdf8fc)]),
-              ),
-              child: Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('MIN ₹ 100 OFF',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xffd8348b))),
-                      Text('Flat deals',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              color: Color(0xffd8348b)))
-                    ],
-                  )),
-            ),
-             Container(
-              height: 70,
-              // width: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+              ],
+            )),
+
+            Column(
+              children: [
+                Container(
+                  height: 200,
+                  width: 150, 
+                  color: Colors.amberAccent,
                 ),
-                gradient: LinearGradient(
-                    colors: [Color(0xfffcebf3), Color(0xfffdf8fc)]),
-              ),
-              child: Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('MIN ₹ 100 OFF',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xffd8348b))),
-                      Text('Flat deals',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              color: Color(0xffd8348b)))
-                    ],
-                  )),
-            ),
-        ],)
-       
+                Container(
+                  // height: 30,
+                  width: 150, 
+                  color: Colors.transparent,
+                  child: Column(children: [
+                    Text("Salem RR Briyani",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),), 
+                     Text("15-20 min",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: Colors.black54)),
+                      Text("Briyani,Chinese",
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black38))
+                  ],),
+                )
+
+
+
+              ],
+            )
       ]),
+    );
+  }
+
+  Widget offerWidget(data) {
+    return Container(
+      // height: 70,
+      // width: 150,
+      decoration:  BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
+        ),
+        gradient:
+            LinearGradient(
+              
+              colors: 
+             data['offers'] == 'Min ₹ 100 off'
+                          ?  [const Color(0xfffcebf3), const Color(0xfffdf8fc)]
+                          : data['offers'] == 'Pocket Hero'
+                              ?  [const Color(0xfff1eafe), const Color(0xfffafafb)]
+                              : data['offers'] == 'Flash Sale'
+                                  ? [Color.fromARGB(255, 230, 216, 213), Color.fromARGB(255, 240, 197, 188)
+                            ]
+                                  : data['offers'] == 'All offers'
+                                      ? [const Color(0xffebf8f4), const Color(0xfffafdfc)]
+                                      : [const Color(0xfffcebf3), const Color(0xfffdf8fc)])
+            
+            ),
+      
+      child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(data['offers'].toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: data['offers'] == 'Min ₹ 100 off'
+                          ? const Color(0xffd8348b)
+                          : data['offers'] == 'Pocket Hero'
+                              ? const Color(0xff6647d7)
+                              : data['offers'] == 'Flash Sale'
+                                  ? const Color(0xfff1684c)
+                                  : data['offers'] == 'All offers'
+                                      ? const Color(0xff22a273)
+                                      : Colors.black)),
+              Text(data['deals'],
+                  style:  TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      color: data['offers'] == 'Min ₹ 100 off'
+                          ? const Color(0xffd8348b)
+                          : data['offers'] == 'Pocket Hero'
+                              ? const Color(0xff6647d7)
+                              : data['offers'] == 'Flash Sale'
+                                  ? const Color(0xfff1684c)
+                                  : data['offers'] == 'All offers'
+                                      ? const Color(0xff22a273)
+                                      : Colors.black))
+            ],
+          )),
     );
   }
 }
