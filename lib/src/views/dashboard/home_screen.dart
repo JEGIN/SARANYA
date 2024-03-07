@@ -91,7 +91,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         .toList();
     return Scaffold(
       // appBar: AppBar(title: Text('Carousel with indicator controller demo')),
-      body: Column(children: [
+      body:
+      SingleChildScrollView(
+     child:  Column(children: [
         Container(
           height: 200,
           width: MediaQuery.of(context).size.width,
@@ -206,7 +208,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ],
             )
       ]),
-    );
+    ),);
   }
 
   Widget offerWidget(data) {
