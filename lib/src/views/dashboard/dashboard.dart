@@ -44,11 +44,35 @@ class _DashboardScreenWidgetState
     return Scaffold(
       appBar: AppBar(
         title: const Text('DashBoard Screen'),
+        
         centerTitle: true,
       ),
-      body: Center(
+      
+     body:Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children:[
+      Padding(
+          padding:  EdgeInsets.all(10),
+          
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.search),
+              hintText: 'Search',
+              
+            ),
+            
+          ),),
+
+      Expanded(child:  Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      ),
+      ],),
+     
+   
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -74,6 +98,7 @@ class _DashboardScreenWidgetState
             label: 'Settings',
           ),
         ],
+       
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,

@@ -90,8 +90,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             ))
         .toList();
     return Scaffold(
-      // appBar: AppBar(title: Text('Carousel with indicator controller demo')),
-      body: Column(children: [
+        // appBar: AppBar(title: Text('Carousel with indicator controller demo')),
+        body: Column(
+      children: [
         Container(
           height: 200,
           width: MediaQuery.of(context).size.width,
@@ -117,7 +118,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (Theme.of(context).brightness == Brightness.dark
@@ -162,7 +164,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 return offerWidget(offerList[index]);
               }),
         ),
-          const SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Padding(
@@ -179,61 +181,106 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ],
             )),
 
-            Column(
-              children: [
-                Container(
-                  height: 200,
-                  width: 150, 
-                  color: Colors.amberAccent,
+       
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(children: [
+              Container(
+                height: 100,
+                width: 100,
+                // color: Colors.amberAccent,
+           decoration: BoxDecoration(
+         image: DecorationImage(image: AssetImage("assets/image/briyani.png")),
+
+        ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "One Free Delivery",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        
+                    ),
+                    Text(
+                      "60% Off",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                      Text(
+                      "UPTO 120",
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+
+                  ],
                 ),
-                Container(
-                  // height: 30,
-                  width: 150, 
-                  color: Colors.transparent,
-                  child: Column(children: [
-                    Text("Salem RR Briyani",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),), 
-                     Text("15-20 min",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: Colors.black54)),
-                      Text("Briyani,Chinese",
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black38))
-                  ],),
-                )
+              ),
+            ])),
 
-
-
-              ],
-            )
-      ]),
-    );
+        Container(
+          // height: 30,
+          width: 150,
+          color: Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            verticalDirection: VerticalDirection.down,
+            children: [
+              Text(
+                "Salem RR Briyani",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              Text("15-20 min",
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54)),
+              Text("Briyani,Chinese",
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38))
+            ],
+          ),
+        )
+      ],
+    ));
   }
 
   Widget offerWidget(data) {
     return Container(
       // height: 70,
       // width: 150,
-      decoration:  BoxDecoration(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10),
-        ),
-        gradient:
-            LinearGradient(
-              
-              colors: 
-             data['offers'] == 'Min ₹ 100 off'
-                          ?  [const Color(0xfffcebf3), const Color(0xfffdf8fc)]
-                          : data['offers'] == 'Pocket Hero'
-                              ?  [const Color(0xfff1eafe), const Color(0xfffafafb)]
-                              : data['offers'] == 'Flash Sale'
-                                  ? [Color.fromARGB(255, 230, 216, 213), Color.fromARGB(255, 240, 197, 188)
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
+          ),
+          gradient: LinearGradient(
+              colors: data['offers'] == 'Min ₹ 100 off'
+                  ? [const Color(0xfffcebf3), const Color(0xfffdf8fc)]
+                  : data['offers'] == 'Pocket Hero'
+                      ? [const Color(0xfff1eafe), const Color(0xfffafafb)]
+                      : data['offers'] == 'Flash Sale'
+                          ? [
+                              Color.fromARGB(255, 230, 216, 213),
+                              Color.fromARGB(255, 240, 197, 188)
                             ]
-                                  : data['offers'] == 'All offers'
-                                      ? [const Color(0xffebf8f4), const Color(0xfffafdfc)]
-                                      : [const Color(0xfffcebf3), const Color(0xfffdf8fc)])
-            
-            ),
-      
+                          : data['offers'] == 'All offers'
+                              ? [
+                                  const Color(0xffebf8f4),
+                                  const Color(0xfffafdfc)
+                                ]
+                              : [
+                                  const Color(0xfffcebf3),
+                                  const Color(0xfffdf8fc)
+                                ])),
+
       child: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Column(
@@ -254,7 +301,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                                       ? const Color(0xff22a273)
                                       : Colors.black)),
               Text(data['deals'],
-                  style:  TextStyle(
+                  style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                       color: data['offers'] == 'Min ₹ 100 off'
