@@ -13,6 +13,7 @@ class CarouselWithIndicatorDemo extends StatefulWidget {
 class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
+  TextEditingController searchController = TextEditingController();
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -91,8 +92,43 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         .toList();
     return Scaffold(
         // appBar: AppBar(title: Text('Carousel with indicator controller demo')),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
       children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: TextFormField(
+            controller: searchController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.grey.shade200),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.red),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.grey.shade200),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.grey.shade200),
+              ),
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              prefixIcon: const Icon(Icons.search),
+              hintText: 'Search',
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
         Container(
           height: 200,
           width: MediaQuery.of(context).size.width,
@@ -136,8 +172,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'BEST OFFERS FOR YOU',
                   style: TextStyle(
                       fontSize: 14,
@@ -170,8 +206,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'TOP RATED NEAR YOU',
                   style: TextStyle(
                       fontSize: 14,
@@ -180,77 +216,168 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 ),
               ],
             )),
-
-       
+        const SizedBox(
+          height: 20,
+        ),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(children: [
               Container(
-                height: 100,
-                width: 100,
+                height: 180,
+                width: 140,
                 // color: Colors.amberAccent,
-           decoration: BoxDecoration(
-         image: DecorationImage(image: AssetImage("assets/image/briyani.png")),
-
-        ),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                  image: DecorationImage(
+                      image: AssetImage(
+                        "assets/image/briyani.png",
+                      ),
+                      fit: BoxFit.cover),
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "One Free Delivery",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    Padding(padding: const EdgeInsets.only(top: 6),
+                child:    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 100,
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xffef6e46),
+                                  Color(0xffd54964),
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              
+                              borderRadius: BorderRadius.all( Radius.circular(10.0))),
+                          child:
+                          Center(
+                          child: RichText(
+                                  textAlign: TextAlign.left,
+                                  text: const TextSpan(
+                                      text: "One ",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w900,
+                                          color: Colors.white),
+                                      children: [
+                                       
+                                        TextSpan(
+                                            text: " Free Delivery",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.white))
+                                      ]))),
+                        ),
+                        const
+                        Padding(padding: EdgeInsets.only(right: 6),
+                       child:  Icon(
+                          Icons.favorite_border_outlined,
+                          color: Colors.red,
+                          weight:20,
+                          size: 20,
+                        )),  
+                    ],)),
+                   
+                  
+                    Padding(padding: const EdgeInsets.only(right: 20, bottom: 10),
+                  child:  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                              textAlign: TextAlign.left,
+                              text: const TextSpan(
+                                  text: "60% Off",
+                                  style:TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white),
+                                  children: [
+                                     TextSpan(
+                                        text: '\n',
+                                        
+                                     ),
+                                TextSpan(
+                                    text: "UPTO 120",
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white))
+                              ])),
                         
-                    ),
-                    Text(
-                      "60% Off",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                      Text(
-                      "UPTO 120",
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-
+                        ]))
                   ],
                 ),
               ),
             ])),
-
+        const SizedBox(
+          height: 20,
+        ),
         Container(
           // height: 30,
-          width: 150,
+          width: 130,
           color: Colors.transparent,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             verticalDirection: VerticalDirection.down,
-            children: [
-              Text(
+            children:  [
+              const Text(
                 "Salem RR Briyani",
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              Text("15-20 min",
+              Row(children: const [
+Padding(
+                      padding: EdgeInsets.only(right: 0),
+                      child: Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.green,
+                        weight: 20,
+                        size: 20,
+                      )), 
+                  Text(" 4.4, ",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54)),
+  Text("15-20 min",
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.black54)),
-              Text("Briyani,Chinese",
+              ],),
+            
+              const Text("Briyani,Chinese",
                   style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: Colors.black38))
             ],
           ),
-        )
+        ),
+        const SizedBox(
+          height: 200,
+        ),
       ],
-    ));
+    )));
   }
 
   Widget offerWidget(data) {
@@ -268,8 +395,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       ? [const Color(0xfff1eafe), const Color(0xfffafafb)]
                       : data['offers'] == 'Flash Sale'
                           ? [
-                              Color.fromARGB(255, 230, 216, 213),
-                              Color.fromARGB(255, 240, 197, 188)
+                              const Color.fromARGB(255, 230, 216, 213),
+                              const Color.fromARGB(255, 240, 197, 188)
                             ]
                           : data['offers'] == 'All offers'
                               ? [

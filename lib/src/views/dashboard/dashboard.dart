@@ -53,18 +53,7 @@ class _DashboardScreenWidgetState
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children:[
-      Padding(
-          padding:  EdgeInsets.all(10),
-          
-          child: TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search',
-              
-            ),
-            
-          ),),
+     
 
       Expanded(child:  Center(
         child: _widgetOptions.elementAt(_selectedIndex),
