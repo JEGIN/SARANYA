@@ -329,7 +329,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           itemBuilder: (BuildContext ctx, int index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: menuCardListWidget(menuCardList[index]),
+              child: menuItemListWidget(menuCardList[index]),
             );
           },
         ),),
@@ -339,175 +339,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   }
 
   Widget menuCardListWidget(data) {
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(vertical: 20),
-    //   child: Container(
-    //     height: 180,
-    //     width: 140,
-    //     decoration: BoxDecoration(
-    //       borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-    //       boxShadow: [
-    //         BoxShadow(
-    //           color: Colors.grey,
-    //           offset: const Offset(0.0, 1.0),
-    //           blurRadius: 6.0,
-    //         ),
-    //       ],
-    //       image: DecorationImage(
-    //         image: NetworkImage(imageUrl),
-    //         fit: BoxFit.cover,
-    //       ),
-    //     ),
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Padding(
-    //           padding: const EdgeInsets.only(top: 6),
-    //           child: Row(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               Container(
-    //                 height: 30,
-    //                 width: 100,
-    //                 decoration: const BoxDecoration(
-    //                   gradient: LinearGradient(
-    //                     colors: [
-    //                       Color(0xffef6e46),
-    //                       Color(0xffd54964),
-    //                     ],
-    //                     begin: Alignment.centerLeft,
-    //                     end: Alignment.centerRight,
-    //                   ),
-    //                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-    //                 ),
-    //                 child: Center(
-    //                   child: RichText(
-    //                     textAlign: TextAlign.left,
-    //                     text: const TextSpan(
-    //                       text: "One ",
-    //                       style: TextStyle(
-    //                         fontSize: 10,
-    //                         fontWeight: FontWeight.w900,
-    //                         color: Colors.white,
-    //                       ),
-    //                       children: [
-    //                         TextSpan(
-    //                           text: " Free Delivery",
-    //                           style: TextStyle(
-    //                             fontSize: 10,
-    //                             fontWeight: FontWeight.normal,
-    //                             color: Colors.white,
-    //                           ),
-    //                         ),
-    //                       ],
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ),
-    //               const Padding(
-    //                 padding: EdgeInsets.only(right: 6),
-    //                 child: Icon(
-    //                   Icons.favorite_border_outlined,
-    //                   color: Colors.red,
-    //                   size: 20,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //         Padding(
-    //           padding: const EdgeInsets.only(right: 20, bottom: 10),
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               RichText(
-    //                 textAlign: TextAlign.left,
-    //                 text: const TextSpan(
-    //                   text: "60% Off",
-    //                   style: TextStyle(
-    //                     fontSize: 20,
-    //                     fontWeight: FontWeight.w900,
-    //                     color: Colors.white,
-    //                   ),
-    //                   children: [
-    //                     TextSpan(
-    //                       text: '\n',
-    //                     ),
-    //                     TextSpan(
-    //                       text: "UPTO 120",
-    //                       style: TextStyle(
-    //                         fontSize: 10,
-    //                         fontWeight: FontWeight.bold,
-    //                         color: Colors.white,
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //         Container(
-    //           width: 130,
-    //           color: Colors.transparent,
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.start,
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               const Text(
-    //                 "Salem RR Briyani",
-    //                 style: TextStyle(
-    //                   fontSize: 15,
-    //                   fontWeight: FontWeight.bold,
-    //                   color: Colors.black,
-    //                 ),
-    //               ),
-    //               Row(
-    //                 children: const [
-    //                   Padding(
-    //                     padding: EdgeInsets.only(right: 0),
-    //                     child: Icon(
-    //                       Icons.star_rate_rounded,
-    //                       color: Colors.green,
-    //                       size: 20,
-    //                     ),
-    //                   ),
-    //                   Text(
-    //                     " 4.4, ",
-    //                     style: TextStyle(
-    //                       fontSize: 14,
-    //                       fontWeight: FontWeight.bold,
-    //                       color: Colors.black54,
-    //                     ),
-    //                   ),
-    //                   Text(
-    //                     "15-20 min",
-    //                     style: TextStyle(
-    //                       fontSize: 14,
-    //                       fontWeight: FontWeight.bold,
-    //                       color: Colors.black54,
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //               const Text(
-    //                 "Briyani,Chinese",
-    //                 style: TextStyle(
-    //                   fontSize: 10,
-    //                   fontWeight: FontWeight.bold,
-    //                   color: Colors.black38,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
-
-    return 
+return 
     Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
     child:Column(children: [
       Padding(
@@ -667,6 +499,55 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   }
 
 
+
+Widget menuItemListWidget(data){
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child:Column(children: [
+       Container(
+                    height: 120,
+                    width: 120,
+                    // color: Colors.amberAccent,
+                    decoration:  BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                      image: DecorationImage(
+                          image: NetworkImage(
+                          data['image'],
+                          ),
+                          fit: BoxFit.cover),
+                    ),),
+
+                      const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            // height: 30,
+                            width: 130,
+                            color: Colors.transparent,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              children: [
+                                 Text(
+                                 data['hotel_name'],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+
+    ],)
+  )]));
+}
   Widget offerWidget(data) {
     return Container(
       // height: 70,
