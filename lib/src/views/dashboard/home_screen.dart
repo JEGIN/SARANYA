@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -40,6 +42,25 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'offers': 'All offers',
       'deals': '60% off and more',
     },
+  ];
+  List imageList = [
+    'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
+    'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/al94ixpykjk1jtoemjtv',
+    'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/chnluyrhpzw3se2kutsv',
+  ];
+   List deliveryList = [
+    {
+      'delivery': 'One Free Delivery',
+      'offerpercent': '60% off upto 120',
+    },
+    {
+     'delivery': 'One Free Delivery',
+      'offerpercent': '50% off upto 100',    },
+    {
+         'delivery': 'One Free Delivery',
+      'offerpercent': '30% off upto 50',   
+       },
+   
   ];
 
   @override
@@ -90,6 +111,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ),
             ))
         .toList();
+
     return Scaffold(
         // appBar: AppBar(title: Text('Carousel with indicator controller demo')),
         body: SingleChildScrollView(
@@ -219,167 +241,356 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         const SizedBox(
           height: 20,
         ),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(children: [
-              Container(
-                height: 180,
-                width: 140,
-                // color: Colors.amberAccent,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 1.0), //(x,y)
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                  image: DecorationImage(
-                      image: AssetImage(
-                        "assets/image/briyani.png",
-                      ),
-                      fit: BoxFit.cover),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(padding: const EdgeInsets.only(top: 6),
-                child:    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 30,
-                          width: 100,
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xffef6e46),
-                                  Color(0xffd54964),
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              
-                              borderRadius: BorderRadius.all( Radius.circular(10.0))),
-                          child:
-                          Center(
-                          child: RichText(
-                                  textAlign: TextAlign.left,
-                                  text: const TextSpan(
-                                      text: "One ",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white),
-                                      children: [
-                                       
-                                        TextSpan(
-                                            text: " Free Delivery",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.white))
-                                      ]))),
-                        ),
-                        const
-                        Padding(padding: EdgeInsets.only(right: 6),
-                       child:  Icon(
-                          Icons.favorite_border_outlined,
-                          color: Colors.red,
-                          weight:20,
-                          size: 20,
-                        )),  
-                    ],)),
-                   
-                  
-                    Padding(padding: const EdgeInsets.only(right: 20, bottom: 10),
-                  child:  Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                              textAlign: TextAlign.left,
-                              text: const TextSpan(
-                                  text: "60% Off",
-                                  style:TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white),
-                                  children: [
-                                     TextSpan(
-                                        text: '\n',
-                                        
-                                     ),
-                                TextSpan(
-                                    text: "UPTO 120",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white))
-                              ])),
-                        
-                        ]))
-                  ],
-                ),
-              ),
-            ])),
-        const SizedBox(
-          height: 20,
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemCount: imageList.length,
+          itemBuilder: (BuildContext ctx, int index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: imageListWidget(imageList[index]),
+            );
+          },
         ),
-        Container(
-          // height: 30,
-          width: 130,
-          color: Colors.transparent,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            verticalDirection: VerticalDirection.down,
-            children:  [
-              const Text(
-                "Salem RR Briyani",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Row(children: const [
-Padding(
-                      padding: EdgeInsets.only(right: 0),
-                      child: Icon(
-                        Icons.star_rate_rounded,
-                        color: Colors.green,
-                        weight: 20,
-                        size: 20,
-                      )), 
-                  Text(" 4.4, ",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54)),
-  Text("15-20 min",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54)),
-              ],),
-            
-              const Text("Briyani,Chinese",
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black38))
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 200,
-        ),
+       
       ],
     )));
   }
+  Widget imageListWidget(String imageUrl) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Container(
+        height: 180,
+        width: 140,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              offset: const Offset(0.0, 1.0),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 30,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xffef6e46),
+                          Color(0xffd54964),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    child: Center(
+                      child: RichText(
+                        textAlign: TextAlign.left,
+                        text: const TextSpan(
+                          text: "One ",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: " Free Delivery",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 6),
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                      color: Colors.red,
+                      size: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, bottom: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    textAlign: TextAlign.left,
+                    text: const TextSpan(
+                      text: "60% Off",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: '\n',
+                        ),
+                        TextSpan(
+                          text: "UPTO 120",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 130,
+              color: Colors.transparent,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Salem RR Briyani",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(right: 0),
+                        child: Icon(
+                          Icons.star_rate_rounded,
+                          color: Colors.green,
+                          size: 20,
+                        ),
+                      ),
+                      Text(
+                        " 4.4, ",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      Text(
+                        "15-20 min",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    "Briyani,Chinese",
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
+        //     return Padding(
+        //         padding: const EdgeInsets.symmetric(vertical: 20),
+        //         child: Column(children: [
+        //           Container(
+        //             height: 180,
+        //             width: 140,
+        //             // color: Colors.amberAccent,
+        //             decoration: const BoxDecoration(
+        //               borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        //               boxShadow: [
+        //                 BoxShadow(
+        //                   color: Colors.grey,
+        //                   offset: Offset(0.0, 1.0), //(x,y)
+        //                   blurRadius: 6.0,
+        //                 ),
+        //               ],
+        //               image: DecorationImage(
+        //                   image: NetworkImage(
+        //                     "https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k",
+        //                   ),
+
+        //                   fit: BoxFit.cover),
+        //             ),
+
+        //             child: Column(
+        //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //               crossAxisAlignment: CrossAxisAlignment.center,
+        //               children: [
+        //                 Padding(
+        //                     padding: const EdgeInsets.only(top: 6),
+        //                     child: Row(
+        //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                       children: [
+        //                         Container(
+        //                           height: 30,
+        //                           width: 100,
+        //                           decoration: const BoxDecoration(
+        //                               gradient: LinearGradient(
+        //                                 colors: [
+        //                                   Color(0xffef6e46),
+        //                                   Color(0xffd54964),
+        //                                 ],
+        //                                 begin: Alignment.centerLeft,
+        //                                 end: Alignment.centerRight,
+        //                               ),
+        //                               borderRadius: BorderRadius.all(
+        //                                   Radius.circular(10.0))),
+        //                           child: Center(
+        //                               child: RichText(
+        //                                   textAlign: TextAlign.left,
+        //                                   text: const TextSpan(
+        //                                       text: "One ",
+        //                                       style: TextStyle(
+        //                                           fontSize: 10,
+        //                                           fontWeight: FontWeight.w900,
+        //                                           color: Colors.white),
+        //                                       children: [
+        //                                         TextSpan(
+        //                                             text: " Free Delivery",
+        //                                             style: TextStyle(
+        //                                                 fontSize: 10,
+        //                                                 fontWeight:
+        //                                                     FontWeight.normal,
+        //                                                 color: Colors.white))
+        //                                       ]))),
+        //                         ),
+        //                         const Padding(
+        //                             padding: EdgeInsets.only(right: 6),
+        //                             child: Icon(
+        //                               Icons.favorite_border_outlined,
+        //                               color: Colors.red,
+        //                               weight: 20,
+        //                               size: 20,
+        //                             )),
+        //                       ],
+        //                     )),
+        //                 Padding(
+        //                     padding:
+        //                         const EdgeInsets.only(right: 20, bottom: 10),
+        //                     child: Column(
+        //                         crossAxisAlignment: CrossAxisAlignment.start,
+        //                         children: [
+        //                           RichText(
+        //                               textAlign: TextAlign.left,
+        //                               text: const TextSpan(
+        //                                   text: "60% Off",
+        //                                   style: TextStyle(
+        //                                       fontSize: 20,
+        //                                       fontWeight: FontWeight.w900,
+        //                                       color: Colors.white),
+        //                                   children: [
+        //                                     TextSpan(
+        //                                       text: '\n',
+        //                                     ),
+        //                                     TextSpan(
+        //                                         text: "UPTO 120",
+        //                                         style: TextStyle(
+        //                                             fontSize: 10,
+        //                                             fontWeight: FontWeight.bold,
+        //                                             color: Colors.white))
+        //                                   ])),
+        //                         ]))
+        //               ],
+        //             ),
+        //           ),
+        //         ]));
+        //     const SizedBox(
+        //       height: 20,
+        //     );
+        //     Container(
+        //       // height: 30,
+        //       width: 130,
+        //       color: Colors.transparent,
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         mainAxisSize: MainAxisSize.max,
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         verticalDirection: VerticalDirection.down,
+        //         children: [
+        //           const Text(
+        //             "Salem RR Briyani",
+        //             style: TextStyle(
+        //                 fontSize: 15,
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.black),
+        //           ),
+        //           Row(
+        //             children: const [
+        //               Padding(
+        //                   padding: EdgeInsets.only(right: 0),
+        //                   child: Icon(
+        //                     Icons.star_rate_rounded,
+        //                     color: Colors.green,
+        //                     weight: 20,
+        //                     size: 20,
+        //                   )),
+        //               Text(" 4.4, ",
+        //                   style: TextStyle(
+        //                       fontSize: 14,
+        //                       fontWeight: FontWeight.bold,
+        //                       color: Colors.black54)),
+        //               Text("15-20 min",
+        //                   style: TextStyle(
+        //                       fontSize: 14,
+        //                       fontWeight: FontWeight.bold,
+        //                       color: Colors.black54)),
+        //             ],
+        //           ),
+        //           const Text("Briyani,Chinese",
+        //               style: TextStyle(
+        //                   fontSize: 10,
+        //                   fontWeight: FontWeight.bold,
+        //                   color: Colors.black38))
+        //         ],
+        //       ),
+        //     );
+        //   },
+        //   itemCount: imageList.length,
+        // ),
+
+        // const SizedBox(
+        //   height: 200,
+        // ),
+     
   Widget offerWidget(data) {
     return Container(
       // height: 70,
