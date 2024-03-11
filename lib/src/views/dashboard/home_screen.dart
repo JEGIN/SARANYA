@@ -301,8 +301,41 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             );
           },
         ),),
+         const SizedBox(
+          height: 20,
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: const [
+                Text(
+                  'Hi, Whats on your Mind',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38),
+                ),
+              ],
+            )),
+              SizedBox(
+          height: 400,
+          width: MediaQuery.of(context).size.width,
+     child:   ListView.builder(
+          shrinkWrap: true,
+          physics:ScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+        
+          itemCount: menuCardList.length,
+          itemBuilder: (BuildContext ctx, int index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: menuCardListWidget(menuCardList[index]),
+            );
+          },
+        ),),
       ],
     )));
+    
   }
 
   Widget menuCardListWidget(data) {
@@ -632,6 +665,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       )
     ]),);
   }
+
 
   Widget offerWidget(data) {
     return Container(
