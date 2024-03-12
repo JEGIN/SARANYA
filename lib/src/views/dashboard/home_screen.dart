@@ -98,18 +98,17 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           'https://t4.ftcdn.net/jpg/04/26/94/99/360_F_426949957_iFC4zrETHm1lFMiLpsVXeAhFQe6vCNAk.jpg',
       'item_name': 'Idli',
     },
-   
     {
-      'menu_image': 'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
+      'menu_image':
+          'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
       'item_name': 'Pongal',
     },
-
     {
       'menu_image':
           'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
       'item_name': 'Poori',
     },
-     {
+    {
       'menu_image':
           'https://i2.wp.com/www.happyandharried.com/wp-content/uploads/2018/04/IMG_2115.jpg',
       'item_name': 'Dosa',
@@ -161,12 +160,12 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           'https://joyfoodsunshine.com/wp-content/uploads/2020/08/best-chocolate-cake-recipe-from-scratch-8.jpg',
       'juice_name': 'Cakes',
     },
-     {
+    {
       'juice_image':
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
       'juice_name': 'Falooda',
     },
-   {
+    {
       'juice_image':
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
       'juice_name': 'Fresh Juice',
@@ -372,7 +371,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           height: 20,
         ),
         SizedBox(
-          height: 400,
+          height: 360,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             shrinkWrap: true,
@@ -389,7 +388,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         ),
         const SizedBox(
           height: 20,
-          width: 20,
         ),
         Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -435,6 +433,84 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               );
             },
           ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: const [
+                Text(
+                  'CRAVING SOMETHING SPECIAL?',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38),
+                ),
+              ],
+            )),
+        const SizedBox(
+          height: 20,
+        ),
+        Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: Offset(0.0, 1.0), //(x,y)
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child:
+            Padding(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+            
+           child:  Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all( Radius.circular(6.0)),
+                    image: DecorationImage(image: NetworkImage('https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k'),fit: BoxFit.fill),
+                  ),
+                ),
+               
+               RichText(
+                                      textAlign: TextAlign.left,
+                                      text: const TextSpan(
+                                          text: "FIT AND",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black45),
+                                          children: [
+                                             TextSpan(
+                                              text:'\n'
+                                             ),
+                                            TextSpan(
+                                                text: "HEALTHY",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w900,
+                                                    color: Colors.black))
+                                          ]))
+
+                
+              ],
+            ))),
+
+            const SizedBox(
+          height: 100,
         ),
       ],
     )));
@@ -621,7 +697,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ],
               image: DecorationImage(
                   image: NetworkImage(
-                    data['menu_image']??'',
+                    data['menu_image'] ?? '',
                   ),
                   fit: BoxFit.cover),
             ),
@@ -640,7 +716,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 verticalDirection: VerticalDirection.down,
                 children: [
                   Text(
-                    data['item_name']??'',
+                    data['item_name'] ?? '',
                     style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -670,7 +746,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ],
               image: DecorationImage(
                   image: NetworkImage(
-                    data['juice_image']??'',
+                    data['juice_image'] ?? '',
                   ),
                   fit: BoxFit.cover),
             ),
@@ -689,7 +765,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 verticalDirection: VerticalDirection.down,
                 children: [
                   Text(
-                    data['juice_name']??'',
+                    data['juice_name'] ?? '',
                     style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
