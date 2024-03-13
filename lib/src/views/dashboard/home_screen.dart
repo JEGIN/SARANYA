@@ -100,7 +100,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     },
     {
       'menu_image':
-          'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
+         'https://t4.ftcdn.net/jpg/04/79/98/13/360_F_479981398_SoHMuDID5KW1giunWjNwlg1QSS3R5n0F.jpg',
       'item_name': 'Pongal',
     },
     {
@@ -110,34 +110,34 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     },
     {
       'menu_image':
-          'https://i2.wp.com/www.happyandharried.com/wp-content/uploads/2018/04/IMG_2115.jpg',
-      'item_name': 'Dosa',
+          'https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Madhuli_Ajay/Aloo_Bonda_Deep_fried_snack_made_with_potato_filling_and_gram_flour_batter.jpg',
+      'item_name': 'Bonda',
     },
     {
       'menu_image':
-          'https://t4.ftcdn.net/jpg/04/26/94/99/360_F_426949957_iFC4zrETHm1lFMiLpsVXeAhFQe6vCNAk.jpg',
-      'item_name': 'Idli',
+          'https://news.cgtn.com/news/7a556a4e30637a6333566d54/img/f62f5544-c38a-4df5-96dd-847d4eb2df1b.jpg',
+      'item_name': 'Tea/Coffee',
     },
     {
       'menu_image':
-          'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
-      'item_name': 'Pongal',
+          'https://i0.wp.com/gomathirecipes.com/wp-content/uploads/2021/09/parotta.jpg?fit=1077%2C720&ssl=1',
+      'item_name': 'Parotha',
     },
     {
       'menu_image':
-          'https://t3.ftcdn.net/jpg/05/00/04/18/360_F_500041894_FIwsCmxDUhLayLRXYAIzpaDSAWaZ3IZe.jpg',
-      'item_name': 'Poori',
+          'https://www.munatycooking.com/wp-content/uploads/2023/12/Chapati-4.jpg',
+      'item_name': 'Chappathi',
     },
   ];
   List juiceitemList = [
     {
       'juice_image':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
+          'https://media.istockphoto.com/id/155376375/photo/fruit-juice.jpg?s=612x612&w=0&k=20&c=DHpot0a67oN-8lSW0CMI7Y4vLM-TlMBBqA7c5kCfrNo=',
       'juice_name': 'Fresh Juice',
     },
     {
       'juice_image':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
+          'https://t3.ftcdn.net/jpg/06/34/02/58/360_F_634025829_mZccrHVPE7m9Hbp4umMLorWheaADH39i.jpg',
       'juice_name': 'Falooda',
     },
     {
@@ -162,12 +162,12 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     },
     {
       'juice_image':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
+          'https://t3.ftcdn.net/jpg/06/34/02/58/360_F_634025829_mZccrHVPE7m9Hbp4umMLorWheaADH39i.jpg',
       'juice_name': 'Falooda',
     },
     {
       'juice_image':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg/640px-Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg',
+          'https://media.istockphoto.com/id/155376375/photo/fruit-juice.jpg?s=612x612&w=0&k=20&c=DHpot0a67oN-8lSW0CMI7Y4vLM-TlMBBqA7c5kCfrNo=',
       'juice_name': 'Fresh Juice',
     },
     {
@@ -189,6 +189,29 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'juice_image':
           'https://joyfoodsunshine.com/wp-content/uploads/2020/08/best-chocolate-cake-recipe-from-scratch-8.jpg',
       'juice_name': 'Cakes',
+    },
+  ];
+  List carvingList = [
+    {
+      'carving_Image': 'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
+      'carving_Item': 'FIT AND ',
+      'carving_Name': 'HEALTHY',
+    },
+    {
+      'carving_Image': 'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
+      'carving_Item': 'FIT AND ',
+      'carving_Name': 'HEALTHY',
+    },
+
+    {
+      'carving_Image': 'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
+      'carving_Item': 'FIT AND ',
+      'carving_Name': 'HEALTHY',
+    },
+    {
+      'carving_Image': 'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
+      'carving_Item': 'FIT AND ',
+      'carving_Name': 'HEALTHY',
     },
   ];
 
@@ -371,7 +394,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           height: 20,
         ),
         SizedBox(
-          height: 360,
+          height: 400,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             shrinkWrap: true,
@@ -388,6 +411,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         ),
         const SizedBox(
           height: 20,
+          width: 20,
         ),
         Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -402,6 +426,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 ),
               ],
             )),
+            
         SizedBox(
           height: 200,
           width: MediaQuery.of(context).size.width,
@@ -434,6 +459,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             },
           ),
         ),
+        
+        
         const SizedBox(
           height: 20,
         ),
@@ -450,9 +477,25 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 ),
               ],
             )),
-        const SizedBox(
+                      const SizedBox(
           height: 20,
         ),
+        SizedBox(
+          height: 100,
+          width: MediaQuery.of(context).size.width,
+          
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemCount: carvingList.length,
+            itemBuilder: (BuildContext ctx, int index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: carvingListWidget(carvingList[index]),
+              );
+            },
+          ),),
         Container(
             height: 100,
             width: 100,
@@ -472,6 +515,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             Padding(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             
            child:  Column(
+            
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -480,7 +524,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                   width: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all( Radius.circular(6.0)),
-                    image: DecorationImage(image: NetworkImage('https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k'),fit: BoxFit.fill),
+                    image: DecorationImage(image: NetworkImage('https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k'),
+                    fit: BoxFit.fill),
                   ),
                 ),
                
@@ -512,10 +557,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             const SizedBox(
           height: 100,
         ),
+
       ],
     )));
   }
-
+        
   Widget menuCardListWidget(data) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -775,6 +821,69 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               ))
         ]));
   }
+   Widget carvingListWidget(data) {
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 0.5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          children: [
+          Container(
+            height: 50,
+            width: 50,
+            // color: Colors.amberAccent,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: Offset(0.0, 1.0), //(x,y)
+                  blurRadius: 6.0,
+                ),
+              ],
+              image: DecorationImage(
+                  image: NetworkImage(
+                    data['carving_Image']  ,
+                  ),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+              // height: 30,
+              width: 130,
+              color: Colors.transparent,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                verticalDirection: VerticalDirection.down,
+                children: [
+                  Text(
+                    data['carving_Item'] ,
+                    style: TextStyle(
+                        fontSize: 10,
+                         fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    data['carving_Name'] ,
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black),
+                  ),
+                ],
+                
+              ))
+        ]));
+  }
+
 
   Widget offerWidget(data) {
     return Container(
