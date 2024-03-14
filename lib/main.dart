@@ -5,12 +5,8 @@
 
 
 
-import 'package:application1/src/views/carousal.dart';
-import 'package:application1/src/views/gridview.dart';
-import 'package:application1/src/views/japantravelmain.dart';
-import 'package:application1/src/views/login_screen.dart';
 
-import 'package:application1/src/views/userprofile.dart';
+import 'package:application1/src/views/gradient_text.dart';
 
 import 'global/app_urls.dart';
 
@@ -24,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreenWidget(),
+      home: DashboardScreenWidget(), //GradientTextWidget(), //DashboardScreenWidget(),
 
       theme: ThemeData(primarySwatch: Colors.deepPurple),
     );
