@@ -412,7 +412,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           height: 20,
         ),
         SizedBox(
-          height: 100,
+          height: 400,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             shrinkWrap: true,
@@ -1046,7 +1046,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       )),
                   Text(data['rating'],
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.w900,
                           color: Colors.black54)),
                             SizedBox(
@@ -1105,7 +1105,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                         text: const TextSpan(
                             text: "Extra 15% OFF ",
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 25,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white),
                                
