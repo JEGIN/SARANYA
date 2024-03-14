@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -410,7 +412,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           height: 20,
         ),
         SizedBox(
-          height: 400,
+          height: 100,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             shrinkWrap: true,
@@ -532,6 +534,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             shrinkWrap: true,
             physics: ScrollPhysics(),
             scrollDirection: Axis.vertical,
+            
             itemCount: menuCardList.length,
             itemBuilder: (BuildContext ctx, int index) {
               return Padding(
@@ -935,7 +938,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
 
    Widget restaurantListWidget(data) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1012,6 +1016,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         const SizedBox(
           width: 20,
         ),
+        
         Container(
           // height: 30,
           width: 130,
@@ -1025,7 +1030,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               Text(
                 data['hotel_name'],
                 style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
@@ -1036,12 +1041,12 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       child: Icon(
                         Icons.star_rate_rounded,
                         color: Colors.green,
-                        weight: 20,
+                       weight: 20,
                         size: 20,
                       )),
                   Text(data['rating'],
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 15,
                           fontWeight: FontWeight.w900,
                           color: Colors.black54)),
                             SizedBox(
@@ -1071,9 +1076,17 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black38)),
                       SizedBox(height: 6,),
-                       Container(
-                height: 30,
-                width: 100,
+                     Row( 
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize:MainAxisSize.max,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+            verticalDirection: VerticalDirection.down,
+                    children:[
+                      Container(
+                        
+                height: 100,
+                width: 130,
+              
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -1083,29 +1096,32 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+            
                 child: Center(
-                    child: RichText(
+                   child:Padding(padding:EdgeInsets.all(10.0),
+                   child: RichText(
                         textAlign: TextAlign.left,
                         text: const TextSpan(
-                            text: "One ",
+                            text: "Extra 15% OFF ",
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white),
+                               
                             children: [
                               TextSpan(
-                                  text: " Free Delivery",
+                                  text: "And Free Delivery",
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white))
                             ]))),
               ),
-            ],
+          )])]))],
           ),
-        )
-      ]),
     );
+    
+    
   }
 }
