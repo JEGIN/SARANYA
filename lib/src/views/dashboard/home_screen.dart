@@ -2,9 +2,11 @@
 
 import 'dart:math';
 
+import 'package:application1/src/views/dashboard/restaurant_detailed_screen.dart';
 import 'package:application1/src/views/gradient_text.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../../global/app_urls.dart';
@@ -220,7 +222,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'carving_Item': 'FIT AND ',
       'carving_Name': 'HEALTHY',
     },
-     {
+    {
       'carving_Image':
           'https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/gfqtawdksujwzmglof8k',
       'carving_Item': 'FIT AND ',
@@ -232,7 +234,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'carving_Item': 'REFRESHING',
       'carving_Name': 'DRINKS',
     },
-    
   ];
 
   @override
@@ -498,22 +499,22 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           height: 20,
         ),
         SizedBox(
-          height:  MediaQuery.of(context).size.height*0.12,
+          height: MediaQuery.of(context).size.height * 0.12,
           width: MediaQuery.of(context).size.width,
-          child:
-          Padding(padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: ScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: carvingList.length,
-            itemBuilder: (BuildContext ctx, int index) {
-              return carvingListWidget(carvingList[index]);
-            },
-          ),),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: carvingList.length,
+              itemBuilder: (BuildContext ctx, int index) {
+                return carvingListWidget(carvingList[index]);
+              },
+            ),
+          ),
         ),
-
-           const SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Padding(
@@ -529,14 +530,13 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 ),
               ],
             )),
-             SizedBox(
-          height: MediaQuery.of(context).size.height,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.90,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
-            
             itemCount: menuCardList.length,
             itemBuilder: (BuildContext ctx, int index) {
               return Padding(
@@ -546,7 +546,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             },
           ),
         ),
-
         const SizedBox(
           height: 100,
         ),
@@ -716,8 +715,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     );
   }
 
-
-
   Widget foodItemListWidget(data) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0.5),
@@ -817,60 +814,60 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   }
 
   Widget carvingListWidget(data) {
-    return
-    
-    Padding(padding: EdgeInsets.symmetric(horizontal: 5),
-    child: Container(
-        // height: 100,
-        // width: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          shape: BoxShape.rectangle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              offset: Offset(0.0, 1.0), //(x,y)
-              blurRadius: 6.0,
-            ),
-          ],
-        ),
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                        data['carving_Image'] ?? '',),
-                        fit: BoxFit.fill),
-                  ),
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: Container(
+            // height: 100,
+            // width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: Offset(0.0, 1.0), //(x,y)
+                  blurRadius: 6.0,
                 ),
-                RichText(
-                    textAlign: TextAlign.left,
-                    text:  TextSpan(
-                        text: data['carving_Item'],
-                        style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black45),
-                        children: [
-                          TextSpan(text: '\n'),
-                          TextSpan(
-                              text: data['carving_Name'],
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.black))
-                        ]))
               ],
-            ))));
+            ),
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        image: DecorationImage(
+                            image: NetworkImage(
+                              data['carving_Image'] ?? '',
+                            ),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                    RichText(
+                        textAlign: TextAlign.left,
+                        text: TextSpan(
+                            text: data['carving_Item'],
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black45),
+                            children: [
+                              TextSpan(text: '\n'),
+                              TextSpan(
+                                  text: data['carving_Name'],
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black))
+                            ]))
+                  ],
+                ))));
   }
 
   Widget offerWidget(data) {
@@ -938,256 +935,266 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     );
   }
 
-   Widget restaurantListWidget(data) {
+  Widget restaurantListWidget(data) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      
-      child:
-      GestureDetector(
-        onTap:() {
-          //  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  GradientText(gradient: LinearGradient(colors: [Colors.red, Colors.blue]), text: 'Hello Gradient!', textStyle: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),)));
-     
-        },
-     child:  Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-        Column(children: [
-              Container(
-                height: 180,
-                width: 140,
-                // color: Colors.amberAccent,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 1.0), //(x,y)
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                  image: DecorationImage(
-                      image: NetworkImage(
-                        data['image'],
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => const RestaurantDetailsScreenWidget()));
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(children: [
+                Container(
+                  height: 180,
+                  width: 140,
+                  // color: Colors.amberAccent,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
                       ),
-                      fit: BoxFit.cover),
-                ),
+                    ],
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          data['image'],
+                        ),
+                        fit: BoxFit.cover),
+                  ),
 
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.only(top: 6),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                           
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [
+                              Padding(
+                                  padding: EdgeInsets.only(right: 6),
+                                  child: Icon(
+                                    Icons.favorite_border_outlined,
+                                    color: Colors.red,
+                                    weight: 20,
+                                    size: 20,
+                                  )),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(right: 20, bottom: 10),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                RichText(
+                                    textAlign: TextAlign.left,
+                                    text: TextSpan(
+                                        text: data['offer'],
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.white),
+                                        children: const [
+                                          TextSpan(
+                                            text: '\n',
+                                          ),
+                                          TextSpan(
+                                              text: "UPTO 120",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))
+                                        ])),
+                              ]))
+                    ],
+                  ),
+                ),
+              ]),
+              const SizedBox(
+                width: 20,
+              ),
+              Container(
+                  // height: 30,
+                  width: 240,
+                  color: Colors.transparent,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      verticalDirection: VerticalDirection.down,
+                      children: [
+                        Text(
+                          data['hotel_name'],
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Row(
+                          children: [
                             Padding(
-                                padding: EdgeInsets.only(right: 6),
+                                padding: EdgeInsets.only(right: 0),
                                 child: Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.red,
+                                  Icons.star_rate_rounded,
+                                  color: Colors.green,
                                   weight: 20,
                                   size: 20,
                                 )),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(right: 20, bottom: 10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                  textAlign: TextAlign.left,
-                                  text: TextSpan(
-                                      text: data['offer'],
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.white),
-                                      children: const [
-                                        TextSpan(
-                                          text: '\n',
-                                        ),
-                                        TextSpan(
-                                            text: "UPTO 120",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))
-                                      ])),
-                            ]))
-                  ],
-                ),
-              ),
-            ]),
-        const SizedBox(
-          width: 20,
-        ),
-        
-        Container(
-          // height: 30,
-          width: 240,
-          color: Colors.transparent,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            verticalDirection: VerticalDirection.down,
-            children: [
-              Text(
-                data['hotel_name'],
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Row(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(right: 0),
-                      child: Icon(
-                        Icons.star_rate_rounded,
-                        color: Colors.green,
-                       weight: 20,
-                        size: 20,
-                      )),
-                  Text(data['rating'],
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.black54)),
+                            Text(data['rating'],
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black54)),
                             SizedBox(
-                    width: 6,
-                  ),
-                  Text("15-20 min",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54)),
-                ],
-              ),
-                SizedBox(
-                height: 6,
-              ),
-              const Text("Briyani,Chinese",
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black38)),
+                              width: 6,
+                            ),
+                            Text("15-20 min",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54)),
+                          ],
+                        ),
                         SizedBox(
-                height: 6,
-              ),
-                       const Text("New busstand road,5 KM",
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black38)),
-                      SizedBox(height: 6,),
-                     Row( 
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize:MainAxisSize.max,
-                       crossAxisAlignment: CrossAxisAlignment.center,
-            verticalDirection: VerticalDirection.down,
-                    children:[
-                      Container(
-                        
-                height: 70,
-                width: 240,
-              
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xfffffcfe),
-                        Color(0xfffeeff2),
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-            
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children:[
-                    Padding(padding:EdgeInsets.all(10.0),
-                   child: RichText(
-                        textAlign: TextAlign.left,
-                        text: const TextSpan(
-                            text: "Extra 15% OFF ",
+                          height: 6,
+                        ),
+                        const Text("Briyani,Chinese",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
-                                color: Color(0xffef6e46)),
-                               
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black38)),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        const Text("New busstand road,5 KM",
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black38)),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            verticalDirection: VerticalDirection.down,
                             children: [
-                              TextSpan(text: '\n',),
-                              TextSpan(
-                                  text: "And Free Delivery",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xffef6e46)))
-                            ]))),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                               
-                                GradientText(
-                                      'One',
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      colors: const [
-                                        Color(0xffef6e46),
-                                        Color(0xffd54964),
+                              Container(
+                                height: 70,
+                                width: 240,
+                                decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xfffffcfe),
+                                        Color(0xfffeeff2),
                                       ],
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4.0),
-                                        border: Border.all(
-                                          color: Color(0xffef6e46),
-                                          width: 1.0,
-                                        )
-                                      ),
-                                      child:Padding(padding: EdgeInsetsDirectional.fromSTEB(6, 1, 6, 1),
-                                      child:Text('LITE',style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xffef6e46),
-                                      ))
-                                    ))
-                                
-                                // Padding(
-                                //     padding: EdgeInsets.all(10.0),
-                                //     child: RichText(
-                                //         textAlign: TextAlign.left,
-                                //         text: const TextSpan(
-                                //             text: "O",
-                                //             style: TextStyle(
-                                              
-                                //                 fontSize: 18,
-                                //                 fontWeight: FontWeight.w900,
-                                //                 color: Colors.white),
-                                //             children: [
-                                             
-                                //               TextSpan(
-                                //                   text: "ne",
-                                //                   style: TextStyle(
-                                //                       fontSize: 18,
-                                //                       fontWeight:
-                                //                           FontWeight.w900,
-                                //                       color: Colors.white))
-                                //             ]))),
-                    ] ),
-                    SizedBox(width: 5,)
-                            
-                    ]),
-          )])]))],
-          ),)
-    );
-    
-    
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30))),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: RichText(
+                                              textAlign: TextAlign.left,
+                                              text: const TextSpan(
+                                                  text: "Extra 15% OFF ",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w900,
+                                                      color: Color(0xffef6e46)),
+                                                  children: [
+                                                    TextSpan(
+                                                      text: '\n',
+                                                    ),
+                                                    TextSpan(
+                                                        text:
+                                                            "And Free Delivery",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Color(
+                                                                0xffef6e46)))
+                                                  ]))),
+                                      Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            GradientText(
+                                              'One',
+                                              style: const TextStyle(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              colors: const [
+                                                Color(0xffef6e46),
+                                                Color(0xffd54964),
+                                              ],
+                                            ),
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius
+                                                        .circular(4.0),
+                                                    border: Border.all(
+                                                      color: Color(0xffef6e46),
+                                                      width: 1.0,
+                                                    )),
+                                                child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                6, 1, 6, 1),
+                                                    child: Text('LITE',
+                                                        style: TextStyle(
+                                                          fontSize: 12.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color:
+                                                              Color(0xffef6e46),
+                                                        ))))
+
+                                            // Padding(
+                                            //     padding: EdgeInsets.all(10.0),
+                                            //     child: RichText(
+                                            //         textAlign: TextAlign.left,
+                                            //         text: const TextSpan(
+                                            //             text: "O",
+                                            //             style: TextStyle(
+
+                                            //                 fontSize: 18,
+                                            //                 fontWeight: FontWeight.w900,
+                                            //                 color: Colors.white),
+                                            //             children: [
+
+                                            //               TextSpan(
+                                            //                   text: "ne",
+                                            //                   style: TextStyle(
+                                            //                       fontSize: 18,
+                                            //                       fontWeight:
+                                            //                           FontWeight.w900,
+                                            //                       color: Colors.white))
+                                            //             ]))),
+                                          ]),
+                                      SizedBox(
+                                        width: 5,
+                                      )
+                                    ]),
+                              )
+                            ])
+                      ]))
+            ],
+          ),
+        ));
   }
 }
