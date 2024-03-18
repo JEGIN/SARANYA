@@ -17,11 +17,10 @@ class RestaurantDetailsScreenWidget extends StatefulWidget {
 
 class _RestaurantDetailsScreenWidgetState
     extends State<RestaurantDetailsScreenWidget> {
+  int _offerCurrent = 0;
 
-        int _offerCurrent = 0;
-
- final CarouselController _offerController = CarouselController();
-       final List<String> imgList = [
+  final CarouselController _offerController = CarouselController();
+  final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
@@ -31,13 +30,32 @@ class _RestaurantDetailsScreenWidgetState
   ];
   @override
   Widget build(BuildContext context) {
-
-
-
-     final List<Widget> imageSliders = imgList
+    final List<Widget> imageSliders = imgList
         .map((item) => Container(
-              child: Text(' h h ',style: TextStyle(color: Colors.orange),)
-            ))
+            height: 100,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    
+                  ],
+                ),
+                Column(
+                  children: [],
+                ),
+                Column(
+                  children: [],
+                )
+              ],
+            )))
         .toList();
     return Scaffold(
       body: Container(
@@ -417,55 +435,51 @@ class _RestaurantDetailsScreenWidgetState
                       )),
                 ),
               ),
-
-
-             
             ]),
           ),
-
-              const SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 200,
-          width: MediaQuery.of(context).size.width,
-          child: CarouselSlider(
-            items: imageSliders,
-            carouselController: _offerController,
-            options: CarouselOptions(
-                autoPlay: true,
-                enlargeCenterPage: true,
-                aspectRatio: 2.0,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _offerCurrent = index;
-                  });
-                }),
+          const SizedBox(
+            height: 20,
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: imgList.asMap().entries.map((entry) {
-            return GestureDetector(
-              onTap: () => _offerController.animateToPage(entry.key),
-              child: Container(
-                width: 12.0,
-                height: 12.0,
-                margin:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
-                        .withOpacity(_offerCurrent == entry.key ? 0.9 : 0.4)),
-              ),
-            );
-          }).toList(),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
+          Container(
+            height: 100,
+            width: MediaQuery.of(context).size.width,
+            child: CarouselSlider(
+              items: imageSliders,
+              carouselController: _offerController,
+              options: CarouselOptions(
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _offerCurrent = index;
+                    });
+                  }),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: imgList.asMap().entries.map((entry) {
+              return GestureDetector(
+                onTap: () => _offerController.animateToPage(entry.key),
+                child: Container(
+                  width: 12.0,
+                  height: 12.0,
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 4.0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: (Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black)
+                          .withOpacity(_offerCurrent == entry.key ? 0.9 : 0.4)),
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
         ]),
       ),
     );
