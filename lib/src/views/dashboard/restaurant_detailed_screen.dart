@@ -20,11 +20,12 @@ class _RestaurantDetailsScreenWidgetState
   int _offerCurrent = 0;
 
   final CarouselController _offerController = CarouselController();
+  TextEditingController searchController = TextEditingController();
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-   ];
+  ];
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = imgList
@@ -38,54 +39,64 @@ class _RestaurantDetailsScreenWidgetState
               ),
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-          
-          child: Padding(padding: EdgeInsets.all(10),child:   Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
                   children: [
-                    Image.asset( 'assets/image/swiggy.png',height: 50,width: 50,),
-                
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Flat ₹ 15 off',style:TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    )),
-                    Text('No code required | Above ₹ 500'.toUpperCase(),style:TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    )),
-                  ]),]),
-                     SizedBox(height: 10,),
-                   Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => _offerController.animateToPage(entry.key),
-                child:
-                Padding(padding: EdgeInsetsDirectional.fromSTEB(3, 0, 3, 0),
-               child:  Container(
-                  width: 8.0,
-                  height: 8.0,
-                 
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black)
-                          .withOpacity(_offerCurrent == entry.key ? 0.9 : 0.4)),
-                ),
-              ));
-            }).toList(),
-          ),
-              
-              ],
-            ))))
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Image.asset(
+                        'assets/image/swiggy.png',
+                        height: 50,
+                        width: 50,
+                      ),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Flat ₹ 15 off',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                )),
+                            Text('No code required | Above ₹ 500'.toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                )),
+                          ]),
+                    ]),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: imgList.asMap().entries.map((entry) {
+                        return GestureDetector(
+                            onTap: () =>
+                                _offerController.animateToPage(entry.key),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(3, 0, 3, 0),
+                              child: Container(
+                                width: 8.0,
+                                height: 8.0,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: (Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : Colors.black)
+                                        .withOpacity(_offerCurrent == entry.key
+                                            ? 0.9
+                                            : 0.4)),
+                              ),
+                            ));
+                      }).toList(),
+                    ),
+                  ],
+                ))))
         .toList();
     return Scaffold(
       body: Container(
@@ -487,7 +498,139 @@ class _RestaurantDetailsScreenWidgetState
                   }),
             ),
           ),
-        
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('MENU',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              controller: searchController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
+                  ),
+                  errorBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  hintText: 'Search for dishes',
+                  suffixIcon: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.keyboard_voice,
+                        color: Colors.orange,
+                      ),
+                    ],
+                  )),
+            ),
+          ),
+          SizedBox(height: 10),
+          // Padding(padding: EdgeInsets.symmetric(horizontal: 30),
+          // child: Container(
+          //    height: MediaQuery.of(context).size.height * 0.40,
+          //         width: MediaQuery.of(context).size.width,
+          //         decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(20),
+          //         ),
+
+          // ),
+          // ),
+          SizedBox(
+            height: 10,
+          ),
+          // Padding(padding: EdgeInsets.all(10.0),
+          
+          Container(
+            // width: MediaQuery.of(context).size.width * 0.5, 
+            //   height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.energy_savings_leaf_rounded,
+                      color: Colors.green,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'PureVeg',
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Bestseller',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+           
+          
+          
+          SizedBox(
+                            height: 10,
+                          ),
+                          Divider(thickness: 0.5, color: Colors.grey.shade400),
+
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Text(
+                'Top Picks',
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          
+
           const SizedBox(
             height: 20,
           ),

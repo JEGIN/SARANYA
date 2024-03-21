@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 import 'package:application1/src/views/gradient_text.dart';
 
 import 'global/app_urls.dart';
