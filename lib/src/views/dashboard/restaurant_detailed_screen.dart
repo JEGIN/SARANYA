@@ -8,7 +8,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class RestaurantDetailsScreenWidget extends StatefulWidget {
-  const RestaurantDetailsScreenWidget({super.key});
+   RestaurantDetailsScreenWidget({super.key,});
+  
 
   @override
   State<RestaurantDetailsScreenWidget> createState() =>
@@ -21,11 +22,14 @@ class _RestaurantDetailsScreenWidgetState
 
   final CarouselController _offerController = CarouselController();
   TextEditingController searchController = TextEditingController();
+
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
   ];
+
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = imgList
@@ -37,10 +41,10 @@ class _RestaurantDetailsScreenWidgetState
                 color: Colors.grey,
                 width: 2,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
             child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -53,21 +57,21 @@ class _RestaurantDetailsScreenWidgetState
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Flat ₹ 15 off',
+                            const Text('Flat ₹ 15 off',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 )),
                             Text('No code required | Above ₹ 500'.toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
                                 )),
                           ]),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -78,7 +82,7 @@ class _RestaurantDetailsScreenWidgetState
                                 _offerController.animateToPage(entry.key),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(3, 0, 3, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(3, 0, 3, 0),
                               child: Container(
                                 width: 8.0,
                                 height: 8.0,
@@ -99,49 +103,70 @@ class _RestaurantDetailsScreenWidgetState
                 ))))
         .toList();
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xffE4E5EB),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.keyboard_backspace_outlined,
+            color: Colors.black,
+            size: 34,
+          ),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return const DashboardScreenWidget();
+              },
+            ));
+          },
+        ),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
-        child: Column(children: [
+        child: 
+        
+        SingleChildScrollView(
+
+        
+       child: Column(children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.55,
+            height: MediaQuery.of(context).size.height * 0.43,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Color(0xffE4E5EB),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40))),
             child: Column(children: [
-              SizedBox(
-                height: 80,
+              const SizedBox(
+                height: 10,
               ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.keyboard_backspace_outlined,
-                      color: Colors.black,
-                      size: 34,
-                    ),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return DashboardScreenWidget();
-                        },
-                      ));
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 7,
-              ),
+              // Row(
+              //   children: [
+              //     const SizedBox(
+              //       width: 20,
+              //     ),
+              //     IconButton(
+              //       icon: const Icon(
+              //         Icons.keyboard_backspace_outlined,
+              //         color: Colors.black,
+              //         size: 34,
+              //       ),
+              //       onPressed: () {
+              //         Navigator.push(context, MaterialPageRoute(
+              //           builder: (context) {
+              //             return const DashboardScreenWidget();
+              //           },
+              //         ));
+              //       },
+              //     ),
+              //   ],
+              // ),
+             
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.40,
                   width: MediaQuery.of(context).size.width,
@@ -150,7 +175,7 @@ class _RestaurantDetailsScreenWidgetState
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -158,7 +183,7 @@ class _RestaurantDetailsScreenWidgetState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.energy_savings_leaf_rounded,
                                     color: Colors.green,
@@ -172,7 +197,7 @@ class _RestaurantDetailsScreenWidgetState
                                 ],
                               ),
                               Row(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.share,
                                     color: Colors.grey,
@@ -190,13 +215,13 @@ class _RestaurantDetailsScreenWidgetState
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.56,
-                              child: Text(
-                                'A2B - Adayar Ananda Bhavan',
+                              child:  Text(
+                               'A2B - Adayar Ananda Bhavan',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -205,7 +230,7 @@ class _RestaurantDetailsScreenWidgetState
                                   fontWeight: FontWeight.bold,
                                 ),
                               )),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -214,11 +239,11 @@ class _RestaurantDetailsScreenWidgetState
                               Row(
                                 children: [
                                   Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: Colors.green),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional
+                                      child: const Padding(
+                                        padding: EdgeInsetsDirectional
                                             .fromSTEB(0, 0, 0, 2),
                                         child: Icon(
                                           Icons.star_rate_rounded,
@@ -226,20 +251,20 @@ class _RestaurantDetailsScreenWidgetState
                                           size: 20,
                                         ),
                                       )),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 6,
                                   ),
-                                  Text('4.4 (10K+ ratings)',
+                                  const Text('4.4 (10K+ ratings)',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold)),
-                                  Icon(
+                                  const Icon(
                                     Icons.info_outline,
                                     color: Colors.grey,
                                     size: 20,
                                   ),
-                                  Text(' .  ₹300 for two',
+                                  const Text(' .  ₹300 for two',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
@@ -248,11 +273,11 @@ class _RestaurantDetailsScreenWidgetState
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
-                            children: [
+                            children: const [
                               Text(
                                 'South Indian, North Indian',
                                 style: TextStyle(
@@ -262,11 +287,11 @@ class _RestaurantDetailsScreenWidgetState
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Divider(thickness: 0.5, color: Colors.grey.shade400),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -291,10 +316,10 @@ class _RestaurantDetailsScreenWidgetState
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Container(
+                              SizedBox(
                                   height: 48,
                                   child: Column(
                                     crossAxisAlignment:
@@ -302,7 +327,7 @@ class _RestaurantDetailsScreenWidgetState
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     mainAxisSize: MainAxisSize.max,
-                                    children: [
+                                    children: const [
                                       Text(
                                         'Outlet',
                                         style: TextStyle(
@@ -319,10 +344,10 @@ class _RestaurantDetailsScreenWidgetState
                                       )
                                     ],
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Container(
+                              SizedBox(
                                   height: 48,
                                   child: Column(
                                     crossAxisAlignment:
@@ -330,7 +355,7 @@ class _RestaurantDetailsScreenWidgetState
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     mainAxisSize: MainAxisSize.max,
-                                    children: [
+                                    children: const [
                                       Text(
                                         'Fairlands Salem',
                                         style: TextStyle(
@@ -352,11 +377,11 @@ class _RestaurantDetailsScreenWidgetState
                                   ))
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Divider(thickness: 0.5, color: Colors.grey.shade400),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(children: [
@@ -364,47 +389,44 @@ class _RestaurantDetailsScreenWidgetState
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               mainAxisSize: MainAxisSize.max,
-                              children: [
+                              children: const [
                                 Icon(Icons.directions_bike),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Container(
-                              // height: 48,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    '0-12kms',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal),
-                                  )
-                                ],
-                              ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: const [
+                                Text(
+                                  '0-12kms',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal),
+                                )
+                              ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Container(
                               //  height: 48,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                children: [
+                                children: const [
                                   Text('|'),
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Container(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                children: [
+                                children: const [
                                   Text(
                                     'Discounted deliveery on order above',
                                     style: TextStyle(
@@ -416,7 +438,7 @@ class _RestaurantDetailsScreenWidgetState
                               ),
                             ),
                           ]),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -424,13 +446,13 @@ class _RestaurantDetailsScreenWidgetState
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.max,
-                                children: [
+                                children: const [
                                   Text('Rs 190'),
                                 ],
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -451,10 +473,10 @@ class _RestaurantDetailsScreenWidgetState
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4.0),
                                       border: Border.all(
-                                        color: Color(0xffef6e46),
+                                        color: const Color(0xffef6e46),
                                         width: 1.0,
                                       )),
-                                  child: Padding(
+                                  child: const Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           6, 1, 6, 1),
                                       child: Text('LITE',
@@ -463,7 +485,7 @@ class _RestaurantDetailsScreenWidgetState
                                             fontWeight: FontWeight.bold,
                                             color: Color(0xffef6e46),
                                           )))),
-                              Text(
+                              const Text(
                                 'Extra 15% of above ₹ 500 + Free Delivery',
                                 style: TextStyle(
                                     color: Color(0xffef6e46),
@@ -481,7 +503,7 @@ class _RestaurantDetailsScreenWidgetState
           const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             height: 100,
             width: MediaQuery.of(context).size.width,
             child: CarouselSlider(
@@ -498,12 +520,12 @@ class _RestaurantDetailsScreenWidgetState
                   }),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text('MENU',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             ],
@@ -533,26 +555,32 @@ class _RestaurantDetailsScreenWidgetState
                   filled: true,
                   fillColor: Colors.grey.shade200,
                   hintText: 'Search for dishes',
-                  suffixIcon: Row(
+                  suffixIcon:
+                  Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                child:   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
-                    children: [
+                    children:  [
                       Icon(
                         Icons.search,
                         color: Colors.grey,
                       ),
-                      SizedBox(
-                        width: 10,
+                       SizedBox(width: 10,),
+                      Container(
+                        width: 1,
+                        height: 20,
+                        color: Colors.grey,
                       ),
+                      SizedBox(width: 10,),
                       Icon(
                         Icons.keyboard_voice,
                         color: Colors.orange,
                       ),
                     ],
-                  )),
+                  ))),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           // Padding(padding: EdgeInsets.symmetric(horizontal: 30),
           // child: Container(
           //    height: MediaQuery.of(context).size.height * 0.40,
@@ -564,7 +592,7 @@ class _RestaurantDetailsScreenWidgetState
 
           // ),
           // ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           // Padding(padding: EdgeInsets.all(10.0),
@@ -576,7 +604,7 @@ class _RestaurantDetailsScreenWidgetState
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.energy_savings_leaf_rounded,
                       color: Colors.green,
@@ -610,16 +638,16 @@ class _RestaurantDetailsScreenWidgetState
            
           
           
-          SizedBox(
+          const SizedBox(
                             height: 10,
                           ),
                           Divider(thickness: 0.5, color: Colors.grey.shade400),
 
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
-            children: [
+            children: const [
               Text(
                 'Top Picks',
                 style: TextStyle(
@@ -634,7 +662,28 @@ class _RestaurantDetailsScreenWidgetState
           const SizedBox(
             height: 20,
           ),
+          Container(
+            height: 200,
+            color: Colors.blue,
+          )
         ]),
+      )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.orange,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.menu_book,
+              color: Colors.white,
+            ),
+            Text(
+              'MENU',
+              style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.bold),
+            ),
+          ],
+        )
       ),
     );
   }

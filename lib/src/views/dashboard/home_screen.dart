@@ -940,7 +940,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => const RestaurantDetailsScreenWidget()));
+            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  RestaurantDetailsScreenWidget()));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
