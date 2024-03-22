@@ -56,6 +56,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Salem RR Briyani',
       'rating': '4.2',
       'offer': '60% off',
+      'address':'Salem, Tamil Nadu',
     },
     {
       'image':
@@ -63,6 +64,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Mangalam Biryani',
       'rating': '3.2',
       'offer': '30% off',
+      'address':'Madurai, Tamil Nadu',
     },
     {
       'image':
@@ -70,6 +72,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'KFC Biryani',
       'rating': '3.9',
       'offer': '40% off',
+      'address':'Chennai, Tamil Nadu',
     },
     {
       'image':
@@ -77,6 +80,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Lakshmi Hotel',
       'rating': '4.4',
       'offer': '20% off',
+      'address':'Coimbatore, Tamil Nadu',
     },
     {
       'image':
@@ -84,6 +88,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Mohal Biryani',
       'rating': '4.8',
       'offer': '50% off',
+      'address':'Salem, Tamil Nadu',
     },
     {
       'image':
@@ -91,6 +96,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Kalyan Biryani',
       'rating': '2.8',
       'offer': '80% off',
+      'address':'Madurai, Tamil Nadu',
     }
   ];
   List fooditemList = [
@@ -940,7 +946,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  RestaurantDetailsScreenWidget()));
+            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  RestaurantDetailsScreenWidget(data:data)));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1070,7 +1076,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                         SizedBox(
                           height: 6,
                         ),
-                        const Text("New busstand road,5 KM",
+                         Text(data['address'],
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
