@@ -8,12 +8,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class RestaurantDetailsScreenWidget extends StatefulWidget {
-  RestaurantDetailsScreenWidget({
-    super.key,
-    this.restaurantDetails, 
- });
-  final restaurantDetails;
-  // final hotelAddress;
+  RestaurantDetailsScreenWidget({super.key, this.data});
+  final data;
 
   @override
   State<RestaurantDetailsScreenWidget> createState() =>
@@ -23,6 +19,8 @@ class RestaurantDetailsScreenWidget extends StatefulWidget {
 class _RestaurantDetailsScreenWidgetState
     extends State<RestaurantDetailsScreenWidget> {
   int _offerCurrent = 0;
+  dynamic name;
+  dynamic address;
 
   final CarouselController _offerController = CarouselController();
   TextEditingController searchController = TextEditingController();
@@ -32,6 +30,27 @@ class _RestaurantDetailsScreenWidgetState
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
   ];
+
+  @override
+  void initState() {
+void hotelName (){
+ if(widget.data!=null){
+    name=widget.data['hotel_name'];
+   }else{
+    name='Hotel name';
+   }
+ };  
+
+ void hotelAddress(){
+  if(widget.data['address']!=null){
+    address=widget.data['address'];
+  }else{
+    address='Hotel address';
+  }
+ };
+   
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -223,8 +242,7 @@ class _RestaurantDetailsScreenWidgetState
                                   width:
                                       MediaQuery.of(context).size.width * 0.56,
                                   child: Text(
-                                    widget.restaurantDetails['hotel_name'],
-                                    // widget.hotelAddress['hotel_address'],
+                                    'A2B - Adayar Ananda Bhavan',
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
