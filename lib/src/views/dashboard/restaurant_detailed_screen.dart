@@ -33,22 +33,18 @@ class _RestaurantDetailsScreenWidgetState
 
   @override
   void initState() {
-void hotelName (){
- if(widget.data!=null){
-    name=widget.data['hotel_name'];
-   }else{
-    name='Hotel name';
-   }
- };  
+    if (widget.data != null) {
+      name = widget.data['hotel_name'];
+    } else {
+      name = 'Hotel name';
+    }
 
- void hotelAddress(){
-  if(widget.data['address']!=null){
-    address=widget.data['address'];
-  }else{
-    address='Hotel address';
-  }
- };
-   
+    if (widget.data['address'] != null) {
+      address = widget.data['address'];
+    } else {
+      address = 'Hotel address';
+    }
+
     super.initState();
   }
 
@@ -242,7 +238,7 @@ void hotelName (){
                                   width:
                                       MediaQuery.of(context).size.width * 0.56,
                                   child: Text(
-                                    'A2B - Adayar Ananda Bhavan',
+                                    name,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -379,9 +375,9 @@ void hotelName (){
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         mainAxisSize: MainAxisSize.max,
-                                        children: const [
+                                        children: [
                                           Text(
-                                            'Fairlands Salem',
+                                            address,
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -697,9 +693,50 @@ void hotelName (){
               const SizedBox(
                 height: 20,
               ),
+
+              Row(
+                children: [
+                  Column(
+                    children: [],
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                          height: 120,
+                          width: 200,
+                          color: Colors.white,
+                          child: Stack(children: [
+                            Container(
+                                height: MediaQuery.of(context).size.height * 0.096,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80'),
+                                      fit: BoxFit.fill),
+                                )),
+                                Padding(
+                                  padding:EdgeInsetsDirectional.fromSTEB(4, 63, 0, 0),
+                                
+                           child: TextButton(
+                                onPressed: () {},
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange,
+                                  ),
+                                  child: Text(
+                                    'Veg',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )))
+                          ]))
+                    ],
+                  )
+                ],
+              ),
               Container(
                 height: 200,
-                color: Colors.blue,
+                color: Colors.white,
               )
             ]),
           )),
