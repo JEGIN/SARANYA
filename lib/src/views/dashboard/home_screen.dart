@@ -56,6 +56,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Salem RR Briyani',
       'rating': '4.2',
       'offer': '60% off',
+      // 'hotel_address': 'VADAPALANI CHENNAI',
     },
     {
       'image':
@@ -63,6 +64,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Mangalam Biryani',
       'rating': '3.2',
       'offer': '30% off',
+      // 'hotel_address': 'EGMORE CHENNAI',
+      
     },
     {
       'image':
@@ -70,6 +73,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'KFC Biryani',
       'rating': '3.9',
       'offer': '40% off',
+      // 'hotel_address': 'Tnagar CHENNAI',
     },
     {
       'image':
@@ -77,6 +81,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Lakshmi Hotel',
       'rating': '4.4',
       'offer': '20% off',
+      // 'hotel_address': 'EGMORE CHENNAI',
     },
     {
       'image':
@@ -84,6 +89,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Mohal Biryani',
       'rating': '4.8',
       'offer': '50% off',
+      // 'hotel_address': 'EGMORE CHENNAI',
     },
     {
       'image':
@@ -91,6 +97,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
       'hotel_name': 'Kalyan Biryani',
       'rating': '2.8',
       'offer': '80% off',
+      // 'hotel_address': 'EGMORE CHENNAI',
     }
   ];
   List fooditemList = [
@@ -940,7 +947,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  RestaurantDetailsScreenWidget()));
+            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  RestaurantDetailsScreenWidget(restaurantDetails:data,)));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1070,7 +1077,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                         SizedBox(
                           height: 6,
                         ),
-                        const Text("New busstand road,5 KM",
+                        //  Text('hotel_address',
+                         Text('New Busstand 5KM',
+
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
