@@ -30,6 +30,13 @@ class _RestaurantDetailsScreenWidgetState
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
   ];
+  List foodList = [
+    {
+      'menu': 'MothiLaddu',
+      'price': '₹204.75',
+    }
+  ];
+
 
   @override
   void initState() {
@@ -691,9 +698,77 @@ class _RestaurantDetailsScreenWidgetState
               ),
 
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
+              Container(
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.favorite_rounded,
+                      color: Colors.green,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+                width: MediaQuery.of(context).size.width,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: foodList.length,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      
+                 foodListWidget(foodList[index]),
+                      );
+                    }),
+              ),
+              Widget foodListWidget(data){
 
+              },
+
+              Row(
+                children: [
+                  Column(
+                    children: [],
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        
+                          height: 120,
+                          width: 200,
+                          color: Colors.white,
+                          child: Stack(children: [
+                            Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.096,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        'https://agrasweetsbanjara.com/cdn/shop/files/MotichurLaddu.jpg?v=1692964253',
+                                      ),
+                                      fit: BoxFit.fill),
+                                )),
+                            Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 63, 0, 0),
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                      ),
+                                      child: Text(
+                                        'Veg',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )))
+                          ]))
+                    ],
+                  )
+                ],
+              ),
               Row(
                 children: [
                   Column(
@@ -707,33 +782,36 @@ class _RestaurantDetailsScreenWidgetState
                           color: Colors.white,
                           child: Stack(children: [
                             Container(
-                                height: MediaQuery.of(context).size.height * 0.096,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.096,
                                 width: 80,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80'),
+                                        'https://b.zmtcdn.com/data/pictures/0/19851950/c092df629b531e645795e58c5996778b_o2_featured_v2.jpg',
+                                      ),
                                       fit: BoxFit.fill),
                                 )),
-                                Padding(
-                                  padding:EdgeInsetsDirectional.fromSTEB(4, 63, 0, 0),
-                                
-                           child: TextButton(
-                                onPressed: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.orange,
-                                  ),
-                                  child: Text(
-                                    'Veg',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )))
+                            Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 63, 0, 0),
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                      ),
+                                      child: Text(
+                                        'Veg',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )))
                           ]))
                     ],
                   )
                 ],
               ),
+              
               Container(
                 height: 200,
                 color: Colors.white,
