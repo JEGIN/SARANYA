@@ -37,7 +37,6 @@ class _RestaurantDetailsScreenWidgetState
     }
   ];
 
-
   @override
   void initState() {
     if (widget.data != null) {
@@ -711,20 +710,31 @@ class _RestaurantDetailsScreenWidgetState
                 ),
               ),
               SizedBox(
-                height: 10,
-                width: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: foodList.length,
-                    itemBuilder: (BuildContext ctx, int index) {
-                      
-                 foodListWidget(foodList[index]),
-                      );
-                    }),
-              ),
-              Widget foodListWidget(data){
-
-              },
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: foodList.length,
+                      itemBuilder: (BuildContext ctx, int index) {
+                        return Row(
+                          children: [
+                            Container(
+                              height: 100,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      foodList[index].image,
+                                    ),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
+                            Column(
+                              children: [],
+                            ),
+                          ],
+                        );
+                      })),
 
               Row(
                 children: [
@@ -734,7 +744,6 @@ class _RestaurantDetailsScreenWidgetState
                   Column(
                     children: [
                       Container(
-                        
                           height: 120,
                           width: 200,
                           color: Colors.white,
@@ -811,7 +820,7 @@ class _RestaurantDetailsScreenWidgetState
                   )
                 ],
               ),
-              
+
               Container(
                 height: 200,
                 color: Colors.white,
