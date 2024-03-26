@@ -40,6 +40,8 @@ dependencies:
   pinput: ^4.0.0
   carousel_slider: ^4.2.1
   simple_gradient_text: ^1.2.4
+  connectivity:
+  dio: ^5.4.1
 
 dev_dependencies:
   flutter_test:

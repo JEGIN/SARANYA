@@ -21,3 +21,12 @@ export 'package:application1/src/views/dashboard/dashboard.dart';
 export 'package:email_validator/email_validator.dart';
 
 export 'package:pinput/pinput.dart';
+
+/// API Acceses
+
+
+export '../../API/api.dart';
+
+/// Model files
+
+export '../model/login_model.dart';
