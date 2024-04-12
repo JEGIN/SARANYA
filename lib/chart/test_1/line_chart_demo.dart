@@ -12,7 +12,7 @@ const _labels = [
   'Brent',
 ];
 
-const _dataNum = 100;
+const _dataNum = 250;
 
 class LineChartDemo extends StatefulWidget {
   const LineChartDemo({Key? key}) : super(key: key);
