@@ -23,7 +23,7 @@ class APIServices {
     // dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       print(APIConstants.baseUrl + APIConstants.login);
-      final response = await dio.post(
+      final response = await Dio().post(
         APIConstants.baseUrl + APIConstants.login,
         data: jsonData,
       );

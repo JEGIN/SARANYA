@@ -19,8 +19,9 @@ export 'package:application1/src/views/dashboard/dashboard.dart';
 /// Packages
 
 export 'package:email_validator/email_validator.dart';
-
+export 'package:connectivity/connectivity.dart';
 export 'package:pinput/pinput.dart';
+export 'package:dio/dio.dart';
 
 /// API Acceses
 

@@ -42,6 +42,8 @@ dependencies:
   simple_gradient_text: ^1.2.4
   connectivity:
   dio: ^5.4.1
+  intl: 
+  echart_flutter: 
 
 dev_dependencies:
   flutter_test:
