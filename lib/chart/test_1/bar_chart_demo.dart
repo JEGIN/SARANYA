@@ -18,14 +18,14 @@ final List ranking = [
   {'class': 'E', 'total': 21},
   {'class': 'F', 'total': 14},
   {'class': 'G', 'total': 8},
-  {'class': 'H', 'total': 7},
-  {'class': 'I', 'total': 21},
-  {'class': 'J', 'total': 21},
-  {'class': 'K', 'total': 14},
-  {'class': 'L', 'total': 8},
-  {'class': 'M', 'total': 7},
-  {'class': 'N', 'total': 21},
-  {'class': 'O', 'total': 7},
+  // {'class': 'H', 'total': 7},
+  // {'class': 'I', 'total': 21},
+  // {'class': 'J', 'total': 21},
+  // {'class': 'K', 'total': 14},
+  // {'class': 'L', 'total': 8},
+  // {'class': 'M', 'total': 7},
+  // {'class': 'N', 'total': 21},
+  // {'class': 'O', 'total': 7},
 ];
 
 class _BarChartDemoState extends State<BarChartDemo> {
@@ -71,9 +71,9 @@ class _BarChartDemoState extends State<BarChartDemo> {
               Color((Random().nextDouble() * 0xFFFFFF).toInt());
           return DChartBarDataCustom(
             onTap: () {
-              print(
-                '${ranking[index]['class']} => ${ranking[index]['total']}',
-              );
+              // print(
+              //   '${ranking[index]['class']} => ${ranking[index]['total']}'.toString(),
+              // );
               setState(() {});
             },
             elevation: 3,
@@ -112,7 +112,7 @@ class _BarChartDemoState extends State<BarChartDemo> {
                             shape: BoxShape.circle,
                           ),
                           child: Text(
-                            '${ranking[index]['total']}',
+                            ranking[index]['total'].toString(),
                             style: const TextStyle(
                               fontSize: 11,
                               color: Colors.red,
@@ -128,7 +128,7 @@ class _BarChartDemoState extends State<BarChartDemo> {
                     ),
                   )
                 : null,
-            valueTooltip: '${ranking[index]['total']} Student'.toUpperCase(),
+            valueTooltip: ranking[index]['total'].toString() + ' Student'.toString(),
           );
         }),
       ),
