@@ -105,15 +105,14 @@ class _MyHomePage extends StatelessWidget {
             //   child: PieChart(),
             // ),
             Center(
-              child: LineChartDemo(),
+              child: BarChartDemo(),
             ),
             Center(
-              child: BarChartDemo(),
+              child: LineChartDemo(),
             ),
             Center(
               child: MultiLineChartDemo(),
             ),
-            
           ],
         ),
       ),
