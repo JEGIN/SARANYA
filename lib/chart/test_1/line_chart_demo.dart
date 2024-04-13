@@ -52,6 +52,7 @@ class _LineChartDemoState extends State<LineChartDemo> {
                     (index, spots) => LineChartBarData(
                       spots: spots,
                       color: _colors[index],
+                      strokeCap: StrokeCap.square,
                     ),
                   )
                   .toList(),
@@ -65,10 +66,10 @@ class _LineChartDemoState extends State<LineChartDemo> {
                       .toList(),
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 16,
+                    fontSize: 12,
                   ),
                   rotation: -50,
-                  alignment: LineChartXLabelAlignment.spaceAround,
+                  alignment: LineChartXLabelAlignment.values[0],
                   count: 5,
                   hideOverflowedLabels: true,
                 ),
@@ -81,8 +82,9 @@ class _LineChartDemoState extends State<LineChartDemo> {
                   ),
                 ),
                 grid: LineChartGrid(
-                  color: Colors.grey.shade300,
+                    color: Colors.grey.shade200, strokeWidth: 2.0
                 ),
+                range: LineChartRange(min: 0, max: 20),
               ),
               area: LineChartArea(
                   border: Border.all(
@@ -172,6 +174,7 @@ class _LineChartDemoState extends State<LineChartDemo> {
                 );
               },
             ),
+            
           ),
         ),
         const SizedBox(height: 32),

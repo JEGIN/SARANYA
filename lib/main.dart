@@ -21,6 +21,7 @@
 
 import 'package:application1/chart/test_1/line_chart_demo.dart';
 import 'package:application1/chart/test_1/multiline_chart_demo.dart';
+import 'package:application1/chart/test_1/pie_chart_demo.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -74,7 +75,7 @@ class _MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -85,6 +86,9 @@ class _MyHomePage extends StatelessWidget {
               ),
               Tab(
                 text: 'Multi-Line Chart',
+              ),
+              Tab(
+                text: 'Pie Chart',
               ),
             ],
           ),
@@ -98,6 +102,9 @@ class _MyHomePage extends StatelessWidget {
             Center(
               child: MultiLineChartDemo(),
             ),
+            Center(
+              child: PieChart(),
+            )
           ],
         ),
       ),

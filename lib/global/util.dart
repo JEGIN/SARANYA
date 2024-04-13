@@ -6,7 +6,7 @@ List<List<LineChartSpot>> createSpotsList(
     {required int spotsNum, int? length}) {
   final spotsList = <List<LineChartSpot>>[];
   final random = Random();
-  length = length ?? random.nextInt(20) + 10;
+  length = length ?? random.nextInt(25) + 10;
   for (var i = 0; i < spotsNum; i++) {
     var spots = <LineChartSpot>[];
     var current = 0.0;
