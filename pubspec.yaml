@@ -44,7 +44,10 @@ dependencies:
   dio: ^5.4.1
   intl: 
   echart_flutter: 
-  flutter_pie_chart:
+  # flutter_pie_chart:
+  # animated_pie_chart: 
+  d_chart: 
+
 
 dev_dependencies:
   flutter_test:

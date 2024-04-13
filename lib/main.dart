@@ -19,6 +19,7 @@
 //   }
 // }
 
+import 'package:application1/chart/test_1/bar_chart_demo.dart';
 import 'package:application1/chart/test_1/line_chart_demo.dart';
 import 'package:application1/chart/test_1/multiline_chart_demo.dart';
 import 'package:application1/chart/test_1/pie_chart_demo.dart';
@@ -81,30 +82,38 @@ class _MyHomePage extends StatelessWidget {
           title: Text(title),
           bottom: const TabBar(
             tabs: <Widget>[
+              // Tab(
+              //   text: 'Pie Chart',
+              // ),
+              Tab(
+                text: 'Bar Chart',
+              ),
               Tab(
                 text: 'Single-Line Chart',
               ),
               Tab(
                 text: 'Multi-Line Chart',
               ),
-              Tab(
-                text: 'Pie Chart',
-              ),
+              
             ],
           ),
         ),
         body: const TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
+            // Center(
+            //   child: PieChart(),
+            // ),
             Center(
               child: LineChartDemo(),
             ),
             Center(
-              child: MultiLineChartDemo(),
+              child: BarChartDemo(),
             ),
             Center(
-              child: PieChart(),
-            )
+              child: MultiLineChartDemo(),
+            ),
+            
           ],
         ),
       ),
