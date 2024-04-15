@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:echart_flutter/echart_flutter.dart';
-import 'package:application1/global/util.dart';
+// import 'package:application1/global/util.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +18,7 @@ const _labels = [
   'Java',
 ];
 
-const _dataNum = 100;
+const _dataNum = 14;
 
 class MultiLineChartDemo extends StatefulWidget {
   const MultiLineChartDemo({Key? key}) : super(key: key);
@@ -39,7 +41,27 @@ class _MultiLineChartDemoState extends State<MultiLineChartDemo> {
       spotsList = createSpotsList(spotsNum: 3, length: _dataNum);
     });
   }
+List<List<LineChartSpot>> createSpotsList(
+      {required int spotsNum, int? length}) {
+    final spotsList = <List<LineChartSpot>>[];
+    final random = Random();
+    length = length ?? random.nextInt(20) + 10;
+    for (var i = 0; i < spotsNum; i++) {
+      var spots = <LineChartSpot>[];
+      var current = 0.0;
+      for (var j = 0; j < length; j++) {
+        if (j == 0) {
+          current = random.nextDouble() * 10;
+        } else {
+          current = current + random.nextDouble() * 2 - 1;
+        }
+        spots.add(LineChartSpot(j.toDouble(), current.toDouble()));
+      }
+      spotsList.add(spots);
+    }
 
+    return spotsList;
+  }
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
@@ -57,6 +79,9 @@ class _MultiLineChartDemoState extends State<MultiLineChartDemo> {
                       spots: spots,
                       color: _colors[index],
                       strokeCap: StrokeCap.square,
+                       point:  LineChartPoint(fillColor: Colors.blue,type:  LineChartPointType.circle,
+                          strokeWidth:2
+                          ),
                     ),
                   )
                   .toList(),

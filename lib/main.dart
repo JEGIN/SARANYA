@@ -20,10 +20,13 @@
 // }
 
 import 'package:application1/chart/test_1/bar_chart_demo.dart';
+import 'package:application1/chart/test_1/chart_tabs.dart';
 import 'package:application1/chart/test_1/line_chart_demo.dart';
 import 'package:application1/chart/test_1/multiline_chart_demo.dart';
 import 'package:application1/chart/test_1/pie_chart_demo.dart';
 import 'package:flutter/material.dart';
+
+import 'chart/test_1/new_bar_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Line Chart',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -64,58 +68,9 @@ class MyApp extends StatelessWidget {
           endIndent: 0,
         ),
       ),
-      home: const _MyHomePage(title: 'Line Chart Demo'),
+      home: const MyTabs(),
     );
   }
 }
 
-class _MyHomePage extends StatelessWidget {
-  const _MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
 
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-          bottom: const TabBar(
-            tabs: <Widget>[
-              // Tab(
-              //   text: 'Pie Chart',
-              // ),
-              Tab(
-                text: 'Bar Chart',
-              ),
-              Tab(
-                text: 'Single-Line Chart',
-              ),
-              Tab(
-                text: 'Multi-Line Chart',
-              ),
-              
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            // Center(
-            //   child: PieChart(),
-            // ),
-            Center(
-              child: BarChartDemo(),
-            ),
-            Center(
-              child: LineChartDemo(),
-            ),
-            Center(
-              child: MultiLineChartDemo(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

@@ -1,138 +1,178 @@
-// import 'package:application1/global/util.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+// Begin custom widget code
+// DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// class PieChart extends StatefulWidget {
-//   const PieChart({super.key});
+import 'package:fl_chart/fl_chart.dart';
 
-//   @override
-//   State<PieChart> createState() => _PieChartState();
-// }
+class PieChartWidget extends StatefulWidget {
+  const PieChartWidget({
+    super.key,
+    this.width,
+    this.height,
+    this.color,
+  });
 
-// class _PieChartState extends State<PieChart> {
-//   final List<Pie> pies = [
-//     Pie(color: const Color(0xFFFF6262), proportion: 20),
-//     Pie(color: const Color(0xFFFF9494), proportion: 30),
-//     Pie(color: const Color(0xFFFF6262), proportion: 30),
-//     Pie(color: const Color(0xFFFF9494), proportion: 20)
-//   ];
+  final double? width;
+  final double? height;
+  final Color? color;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: FlutterPieChart(
-//         pies: pies,
-//         selected: 3,
-//       ),
-//       height: 300,
-//       width: 300,
-//     );
-//   }
-// }
+  @override
+  State<PieChartWidget> createState() => _PieChartWidgetState();
+}
 
-// // class FlutterPieChart extends StatefulWidget {
-// //   FlutterPieChart({
-// //     Key? key,
-// //     required this.pies,
-// //     required this.selected,
-// //     this.animationDuration = const Duration(milliseconds: 1000),
-// //   }) : super(key: key) {
-// //     assert(selected < pies.length,
-// //         "The selected pie must be in the pies list range!!");
-// //   }
-// //   final List<Pie> pies;
-// //   final int selected;
-// //   final Duration animationDuration;
-// //   @override
-// //   State<FlutterPieChart> createState() => _FlutterPieChartState();
-// // }
+class _PieChartWidgetState extends State<PieChartWidget> {
+  int touchedIndex = -1;
+  List<PieChartSectionData> sections = [
+    PieChartSectionData(
+      color: const Color(0xFF2196F3),
+      value: 40,
+      title: 'Jun',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFFFFC300),
+      value: 30,
+      title: 'Jul',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFF6E1BFF),
+      value: 15,
+      title: 'Aug',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFF3BFF49),
+      value: 15,
+      title: 'Sep',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: widget.height,
+        width: widget.width,
+        color: widget.color,
+        child: Column(children: [
+          Expanded(
+            child: PieChart(
+              PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
+                  ),
+                  borderData: FlBorderData(
+                    show: false,
+                    // border: Border.all(color: Colors.black, width: 2),
+                  ),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 40,
+                  sections: showingSections()),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 4,
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 1,
+                            crossAxisCount: 3),
+                    shrinkWrap: true,
+                    itemCount: sections.length,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: <Widget>[
+                          Container(
+                            width: 16,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              color: sections[index].color,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            sections[index].title.toString(),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            ' ( ${sections[index].value.toString()} % ) ',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          )
+                        ],
+                      );
 
-// // class _FlutterPieChartState extends State<FlutterPieChart>
-// //     with SingleTickerProviderStateMixin {
-// //   late Animation<double> animation;
-// //   AnimationController? controller;
-// //   double _animFraction = 0.0;
-// //   @override
-// //   void initState() {
-// //     super.initState();
-// //     controller = AnimationController(
-// //       duration: widget.animationDuration,
-// //       vsync: this,
-// //     );
-// //     final Animation curve = CurvedAnimation(
-// //       parent: controller!,
-// //       curve: Curves.easeInOutBack,
-// //     );
-// //     animation =
-// //         Tween<double>(begin: 0, end: 1).animate(curve as Animation<double>)
-// //           ..addListener(() {
-// //             setState(() {
-// //               _animFraction = animation.value;
-// //             });
-// //           });
-// //     controller!.forward();
-// //   }
+               // Text(sections[index].value.toString());
+                    })),
+          ),
+        ]));
+  }
 
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return AspectRatio(
-// //       aspectRatio: 1,
-// //       child: CustomPaint(
-// //         painter: FlutterPieChartPainter(
-// //           pies: widget.pies,
-// //           selected: widget.selected,
-// //           animFraction: _animFraction,
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
+  List<PieChartSectionData> showingSections() {
+    return List.generate(sections.length, (i) {
+      final isTouched = i == touchedIndex;
+      final fontSize = isTouched ? 25.0 : 16.0;
+      final radius = isTouched ? 60.0 : 50.0;
+      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
-// import 'package:application1/global/util.dart';
-// import 'package:animated_pie_chart/animated_pie_chart.dart';
-// import 'package:flutter/material.dart';
-
-// class PieChart extends StatefulWidget {
-//   const PieChart({super.key});
-
-//   @override
-//   State<PieChart> createState() => _PieChartState();
-// }
-
-// class _PieChartState extends State<PieChart> {
-//   List<MdPieChart> pieChartList = [
-//     MdPieChart(value: 10, name: 'Credit'),
-//     MdPieChart(value: 20, name: 'Debit'),
-//     MdPieChart(value: 12, name: 'Cash'),
-//     MdPieChart(value: 14, name: 'Other'),
-//     MdPieChart(value: 16, name: 'Transfer'),
-//     MdPieChart(value: 28, name: 'UPI'),
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 300,
-//       width: 300,
-//       child: AnimatedPieChart(
-//         sort: true,
-//         stokeWidth: 8.0,
-//         padding: 3.0,
-//         animatedSpeed: 500,
-//         pieRadius: 70.0,
-//         colorsList: [
-//           Colors.brown,
-//           Colors.purple,
-//           Colors.red,
-//           Colors.yellow,
-//           Colors.green,
-//           Colors.blue,
-//         ],
-//         textSize: 14.0,
-//         pieData: [
-//           for (int i = 0; i < pieChartList.length; i++)
-//             MdPieChart(value: pieChartList[i].value, name: pieChartList[i].name)
-//         ],
-//       ),
-//     );
-//   }
-// }
+      return PieChartSectionData(
+        color: sections[i].color,
+        value: sections[i].value,
+        title: isTouched
+            ? '${sections[i].value.toString()} %'
+            : sections[i].title.toString(),
+        radius: radius,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          shadows: shadows,
+        ),
+      );
+    });
+  }
+}
