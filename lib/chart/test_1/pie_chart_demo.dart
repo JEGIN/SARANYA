@@ -24,9 +24,9 @@ class _PieChartWidgetState extends State<PieChartWidget> {
   int touchedIndex = -1;
   List<PieChartSectionData> sections = [
     PieChartSectionData(
-      color: const Color(0xFF2196F3),
-      value: 40,
-      title: 'Jun',
+      color: const Color(0xFF8BC1F7),
+      value: 32,
+      title: 'Savings',
       radius: 50,
       titleStyle: const TextStyle(
         fontSize: 16,
@@ -35,9 +35,9 @@ class _PieChartWidgetState extends State<PieChartWidget> {
       ),
     ),
     PieChartSectionData(
-      color: const Color(0xFFFFC300),
-      value: 30,
-      title: 'Jul',
+      color: const Color(0xFFBDE2B9),
+      value: 12,
+      title: 'Income',
       radius: 50,
       titleStyle: const TextStyle(
         fontSize: 16,
@@ -46,9 +46,9 @@ class _PieChartWidgetState extends State<PieChartWidget> {
       ),
     ),
     PieChartSectionData(
-      color: const Color(0xFF6E1BFF),
-      value: 15,
-      title: 'Aug',
+      color: const Color(0xFF009596),
+      value: 16,
+      title: 'Expense',
       radius: 50,
       titleStyle: const TextStyle(
         fontSize: 16,
@@ -57,9 +57,53 @@ class _PieChartWidgetState extends State<PieChartWidget> {
       ),
     ),
     PieChartSectionData(
-      color: const Color(0xFF3BFF49),
-      value: 15,
-      title: 'Sep',
+      color: const Color(0xFFB8BBBE),
+      value: 20,
+      title: 'Investment',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+      PieChartSectionData(
+      color: const Color(0xFF3C3D99),
+      value: 14,
+      title: 'Bills',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFF6A6E73),
+      value: 4,
+      title: 'Debits',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFFF4B678),
+      value: 2,
+      title: 'Credits',
+      radius: 50,
+      titleStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    PieChartSectionData(
+      color: const Color(0xFF23511E),
+      value: 10,
+      title: 'Dues',
       radius: 50,
       titleStyle: const TextStyle(
         fontSize: 16,
@@ -74,7 +118,9 @@ class _PieChartWidgetState extends State<PieChartWidget> {
         height: widget.height,
         width: widget.width,
         color: widget.color,
-        child: Column(children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
           Expanded(
             child: PieChart(
               PieChartData(
@@ -97,24 +143,20 @@ class _PieChartWidgetState extends State<PieChartWidget> {
                     // border: Border.all(color: Colors.black, width: 2),
                   ),
                   sectionsSpace: 0,
-                  centerSpaceRadius: 40,
+                  centerSpaceRadius: 0,
                   sections: showingSections()),
             ),
           ),
           Expanded(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 4,
-                            crossAxisSpacing: 2,
-                            mainAxisSpacing: 1,
-                            crossAxisCount: 3),
+                child: ListView.builder(
+                  
                     shrinkWrap: true,
                     itemCount: sections.length,
                     itemBuilder: (context, index) {
                       return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             width: 16,
@@ -125,24 +167,54 @@ class _PieChartWidgetState extends State<PieChartWidget> {
                             ),
                           ),
                           const SizedBox(
-                            width: 4,
+                            width: 10,
                           ),
-                          Text(
+                          SizedBox(
+                            width: 90,
+                         child: Text(
                             sections[index].title.toString(),
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
-                          ),
+                          )),
+                           SizedBox(
+                            width: 70,
+                         child:
+                        // RichText(
+                        //                                   textAlign:
+                        //                                       TextAlign.left,
+                        //                                   text: const TextSpan(
+                        //                                       text:
+                        //                                           "( ",
+                        //                                       style: const TextStyle(
+                        //       fontSize: 14,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Colors.black,
+                        //     ),
+                        //                                       children: [
+                        //                                         TextSpan(
+                        //                                           text: '{sections[index].value.toString()}',
+                        //                                         ),
+                        //                                         TextSpan(
+                        //                                             text:
+                        //                                                 "And Free Delivery",
+                        //                                             style:  const TextStyle(
+                        //       fontSize: 14,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Colors.black,
+                        //     ),)
+                        //                                       ]))
                           Text(
                             ' ( ${sections[index].value.toString()} % ) ',
+                            textAlign:  TextAlign.center,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
-                          )
+                          ))
                         ],
                       );
 
@@ -156,15 +228,16 @@ class _PieChartWidgetState extends State<PieChartWidget> {
     return List.generate(sections.length, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
-      final radius = isTouched ? 60.0 : 50.0;
+      final radius = isTouched ? 130.0 : 120.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
       return PieChartSectionData(
+        showTitle: false,
         color: sections[i].color,
         value: sections[i].value,
-        title: isTouched
-            ? '${sections[i].value.toString()} %'
-            : sections[i].title.toString(),
+        // title: isTouched
+        //     ? '${sections[i].value.toString()} %'
+        //     : sections[i].title.toString(),
         radius: radius,
         titleStyle: TextStyle(
           fontSize: fontSize,
@@ -172,7 +245,44 @@ class _PieChartWidgetState extends State<PieChartWidget> {
           color: Colors.white,
           shadows: shadows,
         ),
-      );
+        badgeWidget: 
+        isTouched?
+            Tooltip(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    color: Colors.black,
+  ),
+  message: '',
+  textStyle: TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  ),
+  child: Container(
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(4),
+    color: Colors.black,),
+    child:
+    
+    Padding(padding: EdgeInsets.all(4),
+   child: 
+   Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+     Text(
+      sections[i].title.toString(),
+      style: const TextStyle(color: Colors.white),
+    ),
+ Text(
+      '${sections[i].value.toString()} %',
+      style: const TextStyle(color: Colors.white),
+    ),
+   ],)
+   
+  
+  
+)
+      )): SizedBox.shrink(),);
     });
   }
 }

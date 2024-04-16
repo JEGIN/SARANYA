@@ -1,6 +1,7 @@
 import 'package:application1/chart/test_1/bar_chart_demo.dart';
 import 'package:application1/chart/test_1/line_chart_demo.dart';
 import 'package:application1/chart/test_1/multiline_chart_demo.dart';
+import 'package:application1/chart/test_1/new_bar_chart.dart';
 import 'package:application1/chart/test_1/new_line_chart.dart';
 import 'package:application1/chart/test_1/pie_chart_demo.dart';
 
@@ -44,7 +45,7 @@ class MyTabs extends StatelessWidget {
             Center(
               child: MultiLineChartDemo(),
             ),
-            Center(child: BarChart()),
+            Center(child: BarChartNN()), //BarChart()),
             Center(child: PieChartWidget()),
           ],
         ),

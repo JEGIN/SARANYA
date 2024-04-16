@@ -14,6 +14,8 @@ class _BarChartState extends State<BarChart> {
   final List<OrdinalGroup> ranking = [
     OrdinalGroup(
       id: '1',
+       color: Colors.greenAccent.shade400,
+      seriesCategory:  'Income',
       data: [
          OrdinalData(domain: 'Sun', measure: 30),
         OrdinalData(domain: 'Mon', measure: 10),
@@ -27,20 +29,22 @@ class _BarChartState extends State<BarChart> {
       ],
     ),
 
-    // OrdinalGroup(
-    //   id: '2',
-    //   data: [
-    //     OrdinalData(domain: 'Sun', measure: 20),
-    //     OrdinalData(domain: 'Mon', measure: 40),
-    //     OrdinalData(domain: 'Tue', measure: 80),
-    //     OrdinalData(domain: 'Wed', measure: 10),
-    //     OrdinalData(domain: 'Thu', measure: 40),
-    //     OrdinalData(domain: 'Fri', measure: 100),
-    //     OrdinalData(domain: 'Sat', measure: 80),
+    OrdinalGroup(
+      id: '2',
+      color: Colors.red,
+      seriesCategory:  'Expenses',
+      data: [
+        OrdinalData(domain: 'Sun', measure: 20),
+        OrdinalData(domain: 'Mon', measure: 40),
+        OrdinalData(domain: 'Tue', measure: 80),
+        OrdinalData(domain: 'Wed', measure: 10),
+        OrdinalData(domain: 'Thu', measure: 40),
+        OrdinalData(domain: 'Fri', measure: 100),
+        OrdinalData(domain: 'Sat', measure: 80),
         
-    //     // OrdinalData(domain: 'Thu', measure: 7),
-    //   ],
-    // ),
+        // OrdinalData(domain: 'Thu', measure: 7),
+      ],
+    ),
   ];
 
   @override
@@ -57,6 +61,7 @@ class _BarChartState extends State<BarChart> {
             width: MediaQuery.of(context).size.width,
             height: 500,
             child: DChartBarO(
+              
               // fillPattern:(group, ordinalData, index) => FillPattern.forwarHatch,
               // areaColor:(group, ordinalData, index) => Colors.deepPurpleAccent,
               // fillColor:(group, ordinalData, index) => Colors.green,

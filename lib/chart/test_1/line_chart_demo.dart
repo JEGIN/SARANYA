@@ -63,53 +63,47 @@ class _LineChartDemoState extends State<LineChartDemo> {
   Widget build(BuildContext context) {
     final today = DateTime.now();
     DateFormat outputFormat = DateFormat('yy-MM-dd');
-    return 
-    Container(
-      height: 700,
-
+    return Container(
+        height:500,
     
-   child: Stack(
-      children: [
-
-        Container(
-          height: 500,
-       child: LineChart(
+    
+        child: Column(
+          children: [
+            Expanded(
+              child: LineChart(
                 data: LineChartData(
                   lineBarsData: spotsList
                       .mapIndexed(
                         (index, spots) => LineChartBarData(
-                          // strokeCap: StrokeCap.round,
                           spots: spots,
                           color: _colors[index],
-                          point:  LineChartPoint(fillColor: Colors.blue,type:  LineChartPointType.circle,
-                          strokeWidth:2
-                          ),
+                          point: LineChartPoint(
+                              fillColor: Colors.blue,
+                              type: LineChartPointType.circle,
+                              strokeWidth: 2),
                         ),
                       )
-                      .toList(), 
-                  // xAxis: LineChartXAxis(
-                  //   label: LineChartXLabel(
-                  //     texts: spotsList.first
-                  //         .map((spot) => LineChartLabelText(
-                  //             spot.x,
-                  //             outputFormat.format(DateTime(
-                  //                 today.year,
-                  //                 today.month,
-                  //                 today.day - _dataNum + spot.x.toInt() + 1))))
-                  //         .toList(),
-                  //     style: TextStyle(
-                  //       color: Colors.grey.shade600,
-                  //       fontSize: 16,
-                  //     ),
-                  //     rotation: -50,
-                  //     alignment: LineChartXLabelAlignment.spaceAround,
-                  //     count: 5,
-                  //     hideOverflowedLabels: true,
-                  //   ),
-                  //   // grid: LineChartGrid(
-                  //   //   color: Colors.grey.shade300,
-                  //   // ),
-                  // ),
+                      .toList(),
+                  xAxis: LineChartXAxis(
+                    label: LineChartXLabel(
+                      texts: spotsList.first
+                          .map((spot) => LineChartLabelText(
+                              spot.x,
+                              outputFormat.format(DateTime(
+                                  today.year,
+                                  today.month,
+                                  today.day - _dataNum + spot.x.toInt() + 1))))
+                          .toList(),
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16,
+                      ),
+                      rotation: -50,
+                      alignment: LineChartXLabelAlignment.spaceAround,
+                      count: 5,
+                      hideOverflowedLabels: true,
+                    ),
+                  ),
                   yAxis: LineChartYAxis(
                     label: LineChartYLabel(
                       style: TextStyle(
@@ -196,8 +190,8 @@ class _LineChartDemoState extends State<LineChartDemo> {
                                         ),
                                         const SizedBox(width: 4),
                                         Text(
-                                            _labels[index].toString()+": "+spot!.y.toStringAsFixed(2)),
-                                    
+                                            // '${_labels[index]}: ${spot!.y.toStringAsFixed(2)}',
+                                            'Labels'),
                                       ],
                                     );
                                   },
@@ -210,23 +204,20 @@ class _LineChartDemoState extends State<LineChartDemo> {
                     );
                   },
                 ),
-              )),
-            
-        
-      Padding(padding: EdgeInsetsDirectional.fromSTEB(10, 500, 10, 10,),
-      child: 
-      
-      Row(children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.blue),
-          
- child: TextButton(
-            onPressed: () => setSpotsList(), child: const Text('1D', style: TextStyle(fontSize: 16, color: Colors.white) ,)),)
-      ],)
-     ),
-      ],
-    ));
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.black, borderRadius: BorderRadius.circular(10)),
+              child: TextButton(
+                onPressed: () => setSpotsList(),
+                child: const Text(
+                  'Refresh',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
