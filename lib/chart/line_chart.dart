@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:echart_flutter/echart_flutter.dart';
+import 'package:stack_chart/stack_chart.dart';
 import 'package:application1/global/util.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

@@ -1,33 +1,34 @@
 // import 'package:application1/global/util.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 
-// class PieChart extends StatefulWidget {
-//   const PieChart({super.key});
+class PieChartDemo extends StatefulWidget {
+  const PieChartDemo({super.key});
 
-//   @override
-//   State<PieChart> createState() => _PieChartState();
-// }
+  @override
+  State<PieChartDemo> createState() => _PieChartDemoState();
+}
 
-// class _PieChartState extends State<PieChart> {
-//   final List<Pie> pies = [
-//     Pie(color: const Color(0xFFFF6262), proportion: 20),
-//     Pie(color: const Color(0xFFFF9494), proportion: 30),
-//     Pie(color: const Color(0xFFFF6262), proportion: 30),
-//     Pie(color: const Color(0xFFFF9494), proportion: 20)
-//   ];
+class _PieChartDemoState extends State<PieChartDemo> {
+  final List<Pie> pies = [
+    Pie(color: const Color(0xFFFF6262), proportion: 20),
+    Pie(color: const Color(0xFFFF9494), proportion: 30),
+    Pie(color: const Color(0xFFFF6262), proportion: 30),
+    Pie(color: const Color(0xFFFF9494), proportion: 20)
+  ];
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: FlutterPieChart(
-//         pies: pies,
-//         selected: 3,
-//       ),
-//       height: 300,
-//       width: 300,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FlutterPieChart(
+        pies: pies,
+        selected: 3,
+      ),
+      height: 300,
+      width: 300,
+    );
+  }
+}
 
 // // class FlutterPieChart extends StatefulWidget {
 // //   FlutterPieChart({

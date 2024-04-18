@@ -19,11 +19,12 @@
 //   }
 // }
 
-import 'package:application1/chart/test_1/bar_chart_demo.dart';
-import 'package:application1/chart/test_1/line_chart_demo.dart';
-import 'package:application1/chart/test_1/multiline_chart_demo.dart';
-import 'package:application1/chart/test_1/pie_chart_demo.dart';
+import 'package:application1/chart/bar_chart.dart';
+import 'package:application1/chart/line_chart.dart';
+import 'package:application1/chart/multiline_chart.dart';
+import 'package:application1/chart/pie_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -82,9 +83,9 @@ class _MyHomePage extends StatelessWidget {
           title: Text(title),
           bottom: const TabBar(
             tabs: <Widget>[
-              // Tab(
-              //   text: 'Pie Chart',
-              // ),
+              Tab(
+                text: 'Pie Chart',
+              ),
               Tab(
                 text: 'Bar Chart',
               ),
@@ -101,9 +102,9 @@ class _MyHomePage extends StatelessWidget {
         body: const TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            // Center(
-            //   child: PieChart(),
-            // ),
+            Center(
+              child: PieChartDemo(),
+            ),
             Center(
               child: BarChartDemo(),
             ),
