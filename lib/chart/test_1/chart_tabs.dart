@@ -1,5 +1,6 @@
 import 'package:application1/chart/test_1/bar_chart_demo.dart';
 import 'package:application1/chart/test_1/line_chart_demo.dart';
+import 'package:application1/chart/test_1/line_chart_updated.dart';
 import 'package:application1/chart/test_1/multiline_chart_demo.dart';
 import 'package:application1/chart/test_1/new_bar_chart.dart';
 import 'package:application1/chart/test_1/new_line_chart.dart';
@@ -40,7 +41,7 @@ class MyTabs extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           children: [
             Center(
-              child: LineChartDemo(),
+              child: LineChartWidgetUpdated() //LineChartDemo(),
             ),
             Center(
               child: MultiLineChartDemo(),

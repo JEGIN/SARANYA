@@ -7,18 +7,42 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 final _colors = [
+    Colors.greenAccent,
+      Colors.redAccent,
   Colors.blueAccent,
-  Colors.redAccent,
-  Colors.greenAccent,
+
+
 ];
 
 const _labels = [
-  'Flutter',
-  'Dart',
-  'Java',
+ 'Credit',
+    'Debit',
+    'Due',
 ];
 
 const _dataNum = 14;
+
+List periods = [
+  {
+    "period": "1D",
+  },
+  {
+    "period": "1W",
+  },
+  {
+    "period": "1M",
+  },
+  {
+    "period": "3M",
+  },
+  {
+    "period": "1Y",
+  },
+  {
+    "period": "YTD",
+  },
+];
+int selectedIndex = 0;
 
 class MultiLineChartDemo extends StatefulWidget {
   const MultiLineChartDemo({Key? key}) : super(key: key);
@@ -86,27 +110,27 @@ List<List<LineChartSpot>> createSpotsList(
                   )
                   .toList(),
               xAxis: LineChartXAxis(
-                label: LineChartXLabel(
-                  texts: spotsList.first
-                      .map((spot) => LineChartLabelText(
-                          spot.x,
-                          outputFormat.format(DateTime(today.year, today.month,
-                              today.day - _dataNum + spot.x.toInt() + 1))))
-                      .toList(),
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                  ),
-                  rotation: -50,
-                  alignment: LineChartXLabelAlignment.values[0],
-                  count: 5,
-                  hideOverflowedLabels: true,
-                ),
+                // label: LineChartXLabel(
+                //   texts: spotsList.first
+                //       .map((spot) => LineChartLabelText(
+                //           spot.x,
+                //           outputFormat.format(DateTime(today.year, today.month,
+                //               today.day - _dataNum + spot.x.toInt() + 1))))
+                //       .toList(),
+                //   style: TextStyle(
+                //     color: Colors.grey.shade600,
+                //     fontSize: 12,
+                //   ),
+                //   rotation: -50,
+                //   alignment: LineChartXLabelAlignment.values[0],
+                //   count: 5,
+                //   hideOverflowedLabels: true,
+                // ),
               ),
               yAxis: LineChartYAxis(
                 label: LineChartYLabel(
                   style: TextStyle(
-                    color: Colors.grey.shade600,
+                    color: Colors.transparent,
                     fontSize: 16,
                   ),
                 ),
@@ -204,14 +228,56 @@ List<List<LineChartSpot>> createSpotsList(
             ),
           ),
         ),
-        const SizedBox(height: 32),
-        ElevatedButton(
-          onPressed: () => setSpotsList(),
-          child: const Text(
-            'Refresh',
-            style: TextStyle(fontSize: 16, color: Colors.white),
-          ),
-        ),
+         SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+                height: 28,
+                child: ListView.separated(
+                    itemCount: periods.length,
+                    scrollDirection: Axis.horizontal,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                              setSpotsList();
+                            });
+                          },
+                          child: Container(
+                            // height: 30,
+                            width: 34,
+
+                            decoration: BoxDecoration(
+                              color: selectedIndex == index
+                                  ? Colors.black
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                                child: Text(
+                                  periods[index]['period'],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                )),
+                          ));
+                    },
+                    separatorBuilder: (separatorBuilder, index) {
+                      return SizedBox(
+                        width: 22,
+                      );
+                    })),
+            SizedBox(
+              height: 50,
+            )
       ],
     );
   }

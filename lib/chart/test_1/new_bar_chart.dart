@@ -1,6 +1,8 @@
 import 'package:application1/global/app_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class BarChartNN extends StatefulWidget {
   const BarChartNN({super.key});
@@ -10,21 +12,9 @@ class BarChartNN extends StatefulWidget {
 }
 
 class _BarChartNNState extends State<BarChartNN> {
-  final List<Map<String, dynamic>> data = [
-    {"year": "2020", "income": 50000.4, "expenses": 35000},
-    {"year": "2021", "income": 60000.2, "expenses": 40000},
-    {"year": "2022", "income": 80000.1, "expenses": 45000},
-    {"year": "2023", "income": 70000.3, "expenses": 10000},
-    {"year": "2024", "income": 90000.3, "expenses": 20000},
-    //  {"year": "2025", "income": 100000.3, "expenses": 50000},
-    //    {"year": "2026", "income": 40000.3, "expenses": 20000},
-    //    {"year": "2027", "income": 50000.3, "expenses": 30000},
-    //    {"year": "2028", "income": 60000.3, "expenses": 40000},
-    //    {"year": "2029", "income": 70000.3, "expenses": 50000},
+  List<Map<String, dynamic>> barChatData = [];
 
-    // {"year": "2024", "income": 10000, "expenses": 75000},
-    // {"year": "2025", "income": 20000, "expenses": 55000}
-  ];
+  int selectedIndex = 0;
 
   List periods = [
     {
@@ -37,18 +27,20 @@ class _BarChartNNState extends State<BarChartNN> {
       "period": "1M",
     },
     {
-      "period": "3M",
-    },
-    {
       "period": "1Y",
     },
     {
-      "period": "YTD",
+      "period": "CFY",
+    },
+    {
+      "period": "ALL",
     },
   ];
-  int selectedIndex = 0;
+
+  dynamic apiEndPoint = '1D';
   @override
   void initState() {
+    fetchData(apiEndPoint);
     super.initState();
   }
 
@@ -91,7 +83,7 @@ class _BarChartNNState extends State<BarChartNN> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text("Expenses")
+                  Text("expense")
                 ]),
               ],
             ),
@@ -167,39 +159,49 @@ class _BarChartNNState extends State<BarChartNN> {
                             value,
                             meta,
                           ) {
-                            return Text('${data[value.toInt()]["year"]}');
+                            return Text(
+                                '${barChatData[value.toInt()]["time"]}');
                           }
 
                           // (value) {
-                          //   return data[value.toInt()]["year"];
+                          //   return data[value.toInt()]["time"];
                           // },
                           ),
                     )),
                 borderData: FlBorderData(
                   show: false,
                 ),
-                barGroups: List.generate(data.length, (index) {
+                barGroups: List.generate(barChatData.length, (index) {
+                  double incomeBarChartParsedDouble = double.parse(
+                      barChatData[index]["income"].replaceAll(',', ''));
+                  double expenseBarChartParsedDouble = double.parse(
+                      barChatData[index]["expense"].replaceAll(',', ''));
+                  print(
+                      'incomeBarChartParsedDouble: $incomeBarChartParsedDouble');
+                  print(
+                      'expenseBarChartParsedDouble: $expenseBarChartParsedDouble');
+
                   return BarChartGroupData(
                     groupVertically: false,
                     barsSpace: 2,
                     x: index,
                     barRods: [
                       BarChartRodData(
-                        width: data.length <= 5 ? 26 : 10,
+                        width: barChatData.length <= 5 ? 26 : 10,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(4),
                           topRight: Radius.circular(4),
                         ),
-                        toY: data[index]["income"].toDouble(),
+                        toY: incomeBarChartParsedDouble,
                         color: Colors.green,
                       ),
                       BarChartRodData(
-                        width: data.length <= 5 ? 26 : 10,
+                        width: barChatData.length <= 5 ? 26 : 10,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(4),
                           topRight: Radius.circular(4),
                         ),
-                        toY: data[index]["expenses"].toDouble(),
+                        toY: expenseBarChartParsedDouble,
                         color: Colors.red,
                       ),
                     ],
@@ -218,31 +220,36 @@ class _BarChartNNState extends State<BarChartNN> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                             selectedIndex = index;
-                          });
-                        },
-                      
-                     child:  Container(
-                        // height: 30,
-                        width: 34,
-                        
-                        decoration: BoxDecoration(
-                          color:selectedIndex == index ?Colors.black: Colors.transparent,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
-                            child: Text(periods[index]['period'],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                          color:    selectedIndex == index ? Colors.white : Colors.black,
+                      return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                              fetchData(periods[index]['period']);
+                            });
+                          },
+                          child: Container(
+                            // height: 30,
+                            width: 34,
+
+                            decoration: BoxDecoration(
+                              color: selectedIndex == index
+                                  ? Colors.black
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                            )),
-                      ));
+                            child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                                child: Text(
+                                  periods[index]['period'],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                )),
+                          ));
                     },
                     separatorBuilder: (separatorBuilder, index) {
                       return SizedBox(
@@ -258,12 +265,25 @@ class _BarChartNNState extends State<BarChartNN> {
 
   double getMaxValue() {
     double maxValue = 0;
-    for (var item in data) {
-      if (item["income"] > maxValue) {
-        maxValue = item["income"].toDouble();
+    for (var item in barChatData) {
+      // Parse income and expense strings, replacing commas with periods
+
+      print(item["income"]);
+      print(item["expense"]);
+      double incomeParsedDouble =
+          double.parse(item["income"].replaceAll(',', ''));
+      print('incomeParsedDouble: $incomeParsedDouble');
+
+      double expenseParsedDouble =
+          double.parse(item["expense"].replaceAll(',', ''));
+      print('expenseParsedDouble: $expenseParsedDouble');
+
+      // Compare parsed values and update maxValue accordingly
+      if (incomeParsedDouble > maxValue) {
+        maxValue = incomeParsedDouble;
       }
-      if (item["expenses"] > maxValue) {
-        maxValue = item["expenses"].toDouble();
+      if (expenseParsedDouble > maxValue) {
+        maxValue = expenseParsedDouble;
       }
     }
     return maxValue;
@@ -271,14 +291,56 @@ class _BarChartNNState extends State<BarChartNN> {
 
   double getMinValue() {
     double maxValue = 0;
-    for (var item in data) {
-      if (item["income"] < maxValue) {
-        maxValue = item["income"].toDouble();
+    for (var item in barChatData) {
+      // Parse income and expense strings, replacing commas with periods
+      double incomeParsedDouble =
+          double.parse(item["income"].replaceAll(',', ''));
+      double expenseParsedDouble =
+          double.parse(item["expense"].replaceAll(',', ''));
+
+      // Compare parsed values and update maxValue accordingly
+      if (incomeParsedDouble < maxValue) {
+        maxValue = incomeParsedDouble;
       }
-      if (item["expenses"] < maxValue) {
-        maxValue = item["expenses"].toDouble();
+      if (expenseParsedDouble < maxValue) {
+        maxValue = expenseParsedDouble;
       }
     }
     return maxValue;
+  }
+
+  fetchData(apiEndPoint) async {
+    final response = await http.get(Uri.parse(
+        'https://cloudkitchen.macincode.in/api/v1/bar_chart?period=$apiEndPoint'));
+
+    print(
+        'https://cloudkitchen.macincode.in/api/v1/bar_chart?period=$apiEndPoint');
+
+    if (response.statusCode == 200) {
+      // Request was successful, parse the response data
+      final responseData = json.decode(response.body);
+      // final List<dynamic> data = responseData['data'];
+      // print("Data");
+      // print(data);
+      // print("Data");
+      List<Map<String, dynamic>> chatData =
+          (responseData['data'] as List).cast<Map<String, dynamic>>();
+
+      setState(() {
+        barChatData = chatData;
+      });
+
+      // barChatData = responseData['data'];
+
+      // List<PieChartSectionData> sections = data.map((json) => PieChartSectionData.fromJson(json)).toList();
+
+      // Now you have the list of PieChartSectionData objects
+      print('Bar Chart Data:');
+
+      print(barChatData);
+    } else {
+      // Request failed
+      print('Request failed with status: ${response.statusCode}');
+    }
   }
 }

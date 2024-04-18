@@ -12,10 +12,31 @@ final _colors = [
 ];
 
 const _labels = [
-  'Brent',
+  'Income',
 ];
 
 const _dataNum = 14;
+List periods = [
+  {
+    "period": "1D",
+  },
+  {
+    "period": "1W",
+  },
+  {
+    "period": "1M",
+  },
+  {
+    "period": "3M",
+  },
+  {
+    "period": "1Y",
+  },
+  {
+    "period": "YTD",
+  },
+];
+int selectedIndex = 0;
 
 class LineChartDemo extends StatefulWidget {
   const LineChartDemo({Key? key}) : super(key: key);
@@ -38,7 +59,8 @@ class _LineChartDemoState extends State<LineChartDemo> {
       spotsList = createSpotsList(spotsNum: 1, length: _dataNum);
     });
   }
- List<List<LineChartSpot>> createSpotsList(
+
+  List<List<LineChartSpot>> createSpotsList(
       {required int spotsNum, int? length}) {
     final spotsList = <List<LineChartSpot>>[];
     final random = Random();
@@ -56,17 +78,16 @@ class _LineChartDemoState extends State<LineChartDemo> {
       }
       spotsList.add(spots);
     }
-
+    print(spotsList);
     return spotsList;
   }
+
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
     DateFormat outputFormat = DateFormat('yy-MM-dd');
     return Container(
-        height:500,
-    
-    
+        height: 500,
         child: Column(
           children: [
             Expanded(
@@ -85,35 +106,34 @@ class _LineChartDemoState extends State<LineChartDemo> {
                       )
                       .toList(),
                   xAxis: LineChartXAxis(
-                    label: LineChartXLabel(
-                      texts: spotsList.first
-                          .map((spot) => LineChartLabelText(
-                              spot.x,
-                              outputFormat.format(DateTime(
-                                  today.year,
-                                  today.month,
-                                  today.day - _dataNum + spot.x.toInt() + 1))))
-                          .toList(),
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 16,
+                      // label: LineChartXLabel(
+                      //   texts: spotsList.first
+                      //       .map((spot) => LineChartLabelText(
+                      //           spot.x,
+                      //           outputFormat.format(DateTime(
+                      //               today.year,
+                      //               today.month,
+                      //               today.day - _dataNum + spot.x.toInt() + 1))))
+                      //       .toList(),
+                      //   style: TextStyle(
+                      //     color: Colors.grey.shade600,
+                      //     fontSize: 16,
+                      //   ),
+                      //   rotation: -50,
+                      //   alignment: LineChartXLabelAlignment.spaceAround,
+                      //   count: 5,
+                      //   hideOverflowedLabels: true,
+                      // ),
                       ),
-                      rotation: -50,
-                      alignment: LineChartXLabelAlignment.spaceAround,
-                      count: 5,
-                      hideOverflowedLabels: true,
-                    ),
-                  ),
                   yAxis: LineChartYAxis(
                     label: LineChartYLabel(
                       style: TextStyle(
-                        color: Colors.grey.shade600,
+                        color: Colors.transparent,
                         fontSize: 16,
                       ),
                     ),
                     grid: LineChartGrid(
-                      color: Colors.grey.shade300,
-                    ),
+                        color: Colors.grey.shade300, strokeWidth: 1),
                   ),
                   area: LineChartArea(
                       border: Border.all(
@@ -190,8 +210,7 @@ class _LineChartDemoState extends State<LineChartDemo> {
                                         ),
                                         const SizedBox(width: 4),
                                         Text(
-                                            // '${_labels[index]}: ${spot!.y.toStringAsFixed(2)}',
-                                            'Labels'),
+                                            '${_labels[index]}: ${spot!.y.toStringAsFixed(2)}'),
                                       ],
                                     );
                                   },
@@ -206,17 +225,56 @@ class _LineChartDemoState extends State<LineChartDemo> {
                 ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(10)),
-              child: TextButton(
-                onPressed: () => setSpotsList(),
-                child: const Text(
-                  'Refresh',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ),
+            SizedBox(
+              height: 20,
             ),
+            SizedBox(
+                height: 28,
+                child: ListView.separated(
+                    itemCount: periods.length,
+                    scrollDirection: Axis.horizontal,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                              setSpotsList();
+                            });
+                          },
+                          child: Container(
+                            // height: 30,
+                            width: 34,
+
+                            decoration: BoxDecoration(
+                              color: selectedIndex == index
+                                  ? Colors.black
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                                child: Text(
+                                  periods[index]['period'],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                )),
+                          ));
+                    },
+                    separatorBuilder: (separatorBuilder, index) {
+                      return SizedBox(
+                        width: 22,
+                      );
+                    })),
+            SizedBox(
+              height: 50,
+            )
           ],
         ));
   }
