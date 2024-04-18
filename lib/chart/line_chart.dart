@@ -1,28 +1,27 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:math';
+
 import 'package:collection/collection.dart';
-import 'package:stack_chart/stack_chart.dart';
-import 'package:application1/global/util.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-final _colors = [
-  Colors.blueAccent,
-];
-
-const _labels = [
-  'Brent',
-];
+// import library mac_line_chart from stack_chart Package
+import 'package:stack_chart/stack_chart.dart';
 
 const _dataNum = 250;
 
-class LineChartDemo extends StatefulWidget {
-  const LineChartDemo({Key? key}) : super(key: key);
+class SingleLineChart extends StatefulWidget {
+  String chartLabel;
+  Color? lineColor;
+  SingleLineChart({Key? key, required this.chartLabel, this.lineColor});
+  // Labels Array
 
   @override
-  State<LineChartDemo> createState() => _LineChartDemoState();
+  State<SingleLineChart> createState() => _SingleLineChartState();
 }
 
-class _LineChartDemoState extends State<LineChartDemo> {
-  late List<List<LineChartSpot>> spotsList;
+class _SingleLineChartState extends State<SingleLineChart> {
+  late List<List<MacLineChartSpot>> spotsList;
 
   @override
   void initState() {
@@ -49,20 +48,25 @@ class _LineChartDemoState extends State<LineChartDemo> {
             data: LineChartData(
               lineBarsData: spotsList
                   .mapIndexed(
-                    (index, spots) => LineChartBarData(
+                    (index, spots) => LineChartDataBar(
                       spots: spots,
-                      color: _colors[index],
+                      color: widget.lineColor!,
                       strokeCap: StrokeCap.square,
                     ),
                   )
                   .toList(),
-              xAxis: LineChartXAxis(
+              xAxis: MacLineChartXAxis(
                 label: LineChartXLabel(
                   texts: spotsList.first
-                      .map((spot) => LineChartLabelText(
+                      .map(
+                        (spot) => LineChartLabelText(
                           spot.x,
-                          outputFormat.format(DateTime(today.year, today.month,
-                              today.day - _dataNum + spot.x.toInt() + 1))))
+                          outputFormat.format(
+                            DateTime(today.year, today.month,
+                                today.day - _dataNum + spot.x.toInt() + 1),
+                          ),
+                        ),
+                      )
                       .toList(),
                   style: TextStyle(
                     color: Colors.grey.shade600,
@@ -74,7 +78,7 @@ class _LineChartDemoState extends State<LineChartDemo> {
                   hideOverflowedLabels: true,
                 ),
               ),
-              yAxis: LineChartYAxis(
+              yAxis: MacLineChartYAxis(
                 label: LineChartYLabel(
                   style: TextStyle(
                     color: Colors.grey.shade600,
@@ -82,8 +86,7 @@ class _LineChartDemoState extends State<LineChartDemo> {
                   ),
                 ),
                 grid: LineChartGrid(
-                    color: Colors.grey.shade200, strokeWidth: 2.0
-                ),
+                    color: Colors.grey.shade200, strokeWidth: 2.0),
                 range: LineChartRange(min: 0, max: 20),
               ),
               area: LineChartArea(
@@ -121,13 +124,19 @@ class _LineChartDemoState extends State<LineChartDemo> {
                             color: Colors.white,
                           ),
                           child: Text(
-                            outputFormat.format(DateTime(
+                            outputFormat.format(
+                              DateTime(
                                 today.year,
                                 today.month,
                                 today.day -
                                     _dataNum +
                                     spots.first!.x.toInt() +
-                                    1)),
+                                    1,
+                              ),
+                              // 24,
+                              // 12,
+                              // 29),
+                            ),
                           ),
                         ),
                         const Divider(
@@ -154,14 +163,12 @@ class _LineChartDemoState extends State<LineChartDemo> {
                                       width: 12,
                                       height: 12,
                                       decoration: BoxDecoration(
-                                        color: _colors[index],
+                                        color: widget.lineColor,
                                         borderRadius: BorderRadius.circular(2),
                                       ),
                                     ),
                                     const SizedBox(width: 4),
-                                    Text(
-                                      '${_labels[index]}: ${spot!.y.toStringAsFixed(2)}',
-                                    ),
+                                    Text(widget.chartLabel),
                                   ],
                                 );
                               },
@@ -174,13 +181,39 @@ class _LineChartDemoState extends State<LineChartDemo> {
                 );
               },
             ),
-            
           ),
         ),
         const SizedBox(height: 32),
         ElevatedButton(
-            onPressed: () => setSpotsList(), child: const Text('Refresh', style: TextStyle(fontSize: 16, color: Colors.white) ,),),
+          onPressed: () => setSpotsList(),
+          child: const Text(
+            'Refresh',
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+        ),
       ],
     );
   }
+}
+
+List<List<MacLineChartSpot>> createSpotsList(
+    {required int spotsNum, int? length}) {
+  final spotsList = <List<MacLineChartSpot>>[];
+  final random = Random();
+  length = length ?? random.nextInt(20) + 10;
+  for (var i = 0; i < spotsNum; i++) {
+    var spots = <MacLineChartSpot>[];
+    var current = 0.0;
+    for (var j = 0; j < length; j++) {
+      if (j == 0) {
+        current = random.nextDouble() * 10;
+      } else {
+        current = current + random.nextDouble() * 2 - 1;
+      }
+      spots.add(MacLineChartSpot(j.toDouble(), current.toDouble()));
+    }
+    spotsList.add(spots);
+  }
+
+  return spotsList;
 }

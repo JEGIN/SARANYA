@@ -19,12 +19,11 @@
 //   }
 // }
 
-import 'package:application1/chart/bar_chart.dart';
-import 'package:application1/chart/line_chart.dart';
-import 'package:application1/chart/multiline_chart.dart';
-import 'package:application1/chart/pie_chart.dart';
+import '../chart/bar_chart.dart';
+import '../chart/line_chart.dart';
+import '../chart/multiline_chart.dart';
+import '../chart/pie_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -99,7 +98,7 @@ class _MyHomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
             Center(
@@ -109,10 +108,14 @@ class _MyHomePage extends StatelessWidget {
               child: BarChartDemo(),
             ),
             Center(
-              child: LineChartDemo(),
+              child: SingleLineChart(
+                  chartLabel: 'Single',
+                  lineColor: Color.fromRGBO(255, 64, 129, 1)),
             ),
             Center(
-              child: MultiLineChartDemo(),
+              child: MultiLineChart(
+                labels: ['Income', 'Expenses', 'Profit'],
+              ),
             ),
           ],
         ),
