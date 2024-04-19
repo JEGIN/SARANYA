@@ -1,11 +1,7 @@
-
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
-
-
-
 
 class LineChartWidgetUpdated extends StatefulWidget {
   const LineChartWidgetUpdated({Key? key}) : super(key: key);
@@ -13,128 +9,185 @@ class LineChartWidgetUpdated extends StatefulWidget {
   @override
   State<LineChartWidgetUpdated> createState() => _LineChartWidgetUpdatedState();
 }
+
 class _LineChartWidgetUpdatedState extends State<LineChartWidgetUpdated> {
-  final List<FlSpot> data1 = [
-    FlSpot(0, 10),
-    FlSpot(1, 20),
-    FlSpot(2, 15),
-    FlSpot(3, 25),
-    FlSpot(4, 30),
-    FlSpot(5, 35),
-    FlSpot(6, 50), // Updated to be consistent with data2 and others
-  ];
+  // late double minX, maxX, minY, maxY;
 
-  final List<FlSpot> data2 = [
-    FlSpot(0, 22),
-    FlSpot(1.5, 25),
-    FlSpot(2.3, 33),
-    FlSpot(3, 35),
-    FlSpot(4, 40),
-    FlSpot(5, 45),
-  ];
-  final List<FlSpot> data3 = [
-    FlSpot(0, 22),
-    FlSpot(1.5, 25),
-    FlSpot(2.3, 33),
-    FlSpot(3, 35),
-    FlSpot(4, 40),
-    FlSpot(5, 45),
-  ];
-  final List<FlSpot> data4 = [
-    FlSpot(0, 22),
-    FlSpot(1.5, 25),
-    FlSpot(2.3, 33),
-    FlSpot(3, 35),
-    FlSpot(4, 40),
-    FlSpot(5, 45),
-  ];
+  // List<LineChartBarData> dataOfLineChart = [];
 
-  late double minX, maxX, minY, maxY;
+  // List<Color> colors = [Colors.red, Colors.green, Colors.purple];
 
-  @override
-  void initState() {
-    super.initState();
-    // Calculate the dynamic values for minX, maxX, minY, and maxY
-    calculateChartLimits();
-  }
+  // List<FlSpot> data1 = [];
 
-  void calculateChartLimits() {
-    List<List<FlSpot>> allDataSets = [data1, data2, data3, data4];
+  // List<FlSpot> data2 = [];
 
-    // Initialize the min and max values
-    minX = double.infinity;
-    maxX = double.negativeInfinity;
-    minY = double.infinity;
-    maxY = double.negativeInfinity;
+  // List<FlSpot> data3 = [];
 
-    // Iterate through all data sets
-    for (List<FlSpot> dataSet in allDataSets) {
-      for (FlSpot spot in dataSet) {
-        if (spot.x < minX) {
-          minX = spot.x;
-        }
-        if (spot.x > maxX) {
-          maxX = spot.x;
-        }
-        if (spot.y < minY) {
-          minY = spot.y;
-        }
-        if (spot.y > maxY) {
-          maxY = spot.y;
-        }
-      }
-    }
+  // List<FlSpot> dataPoints = [];
 
-    // Add some padding to maxY to improve the chart's appearance
-    maxY += 10; // Adjust this value as needed for padding
-  }
+  // List<List<FlSpot>> allDataSets = [];
+
+  // @override
+  // void initState() {
+  //   // calculateChartLimits();
+  //   this.data1 = generateRandomDataPoints(280);
+  //   // print(this.data1);
+  //   this.data2 = generateRandomDataPoints(320);
+  //   // print(this.data2);
+  //   this.data3 = generateRandomDataPoints(199);
+  //   // print(this.data3);
+  //   super.initState();
+
+  //   // Calculate the dynamic values for minX, maxX, minY, and maxY
+  //   allDataSets = [this.data1, this.data2, this.data3];
+  //   print('************');
+  //   print(allDataSets);
+  //   print('************');
+
+  //   for (int i = 0; i < allDataSets.length; i++) {
+  //     LineChartBarData lineChartBarData = LineChartBarData(
+  //       spots: allDataSets[i],
+  //       isCurved: true,
+  //       color: colors[i], // Assign a color from the list
+  //       barWidth: 2,
+  //       // curveSmoothness: 1,
+  //       isStrokeCapRound: true,
+  //       belowBarData: BarAreaData(show: true),
+  //     );
+
+  //     // Add the line chart data to the list
+  //     dataOfLineChart.add(lineChartBarData);
+  //   }
+  // }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Center(
+  //       child: Container(
+  //         width: 400,
+  //         height: 300,
+  //         child: LineChart(
+  //           LineChartData(
+  //             minX: 0,
+  //             maxX: 365,
+  //             minY: 0,
+  //             maxY: 9000,
+  //             lineBarsData: dataOfLineChart,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // calculateChartLimits() {
+  //   // Initialize limits with extreme values
+  //   minX = 0;
+  //   maxX = 365;
+  //   minY = 0;
+  //   maxY = 9000;
+
+  //   // Iterate through all data sets
+  //   for (var dataSet in allDataSets) {
+  //     // Iterate through each data point in the current data set
+  //     for (var point in dataSet) {
+  //       // Update minX and maxX based on X values
+  //       if (point.x < minX) {
+  //         minX = point.x;
+  //       }
+  //       if (point.x > maxX) {
+  //         maxX = point.x;
+  //       }
+
+  //       // Update minY and maxY based on Y values
+  //       if (point.y < minY) {
+  //         minY = point.y;
+  //       }
+  //       if (point.y > maxY) {
+  //         maxY = point.y;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // List<FlSpot> generateRandomDataPoints(int n) {
+  //   // Create an instance of the Random class
+  //   Random random = Random();
+
+  //   // Define the minimum and maximum values for the range
+  //   double min = 0;
+  //   double max = 8500;
+
+  //   // Create an empty list to hold the data points
+
+  //   // Generate 30 random data points
+  //   for (int i = 1; i < n; i++) {
+  //     // Generate a random X value within the range
+  //     double x = min + (random.nextDouble() * (max - min));
+
+  //     // Generate a random Y value within the range
+  //     double y = min + (random.nextDouble() * (max - min));
+
+  //     // Create a FlSpot with the generated X and Y values
+  //     FlSpot dataPoint = FlSpot(x.roundToDouble(), y.roundToDouble());
+
+  //     // Add the data point to the list
+  //     this.dataPoints.add(dataPoint);
+  //   }
+
+  //   // Return the list of data points
+  //   return dataPoints;
+  // }
+  // Generate some dummy data for the cahrt
+  // This will be used to draw the red line
+  final List<FlSpot> dummyData1 = List.generate(8, (index) {
+    return FlSpot(index.toDouble(), index * Random().nextDouble());
+  });
+
+  // This will be used to draw the orange line
+  final List<FlSpot> dummyData2 = List.generate(8, (index) {
+    return FlSpot(index.toDouble(), index * Random().nextDouble());
+  });
+
+  // This will be used to draw the blue line
+  final List<FlSpot> dummyData3 = List.generate(8, (index) {
+    return FlSpot(index.toDouble(), index * Random().nextDouble());
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: Container(
-          width: 400,
-          height: 300,
+          padding: const EdgeInsets.all(20),
+          width: double.infinity,
           child: LineChart(
             LineChartData(
-              minX: minX,
-              maxX: maxX,
-              minY: minY,
-              maxY: maxY,
+              titlesData: FlTitlesData(show: false),
+              borderData: FlBorderData(show: false),
               lineBarsData: [
+                // The red line
                 LineChartBarData(
-                  spots: data1,
+                  spots: dummyData1,
                   isCurved: true,
-                  color: Colors.red, // Color for the first line
-                  barWidth: 4,
-                  isStrokeCapRound: true,
-                  belowBarData: BarAreaData(show: false),
+                  barWidth: 3,
+                  color: Colors.indigo,
                 ),
+                // The orange line
                 LineChartBarData(
-                  spots: data2,
+                  spots: dummyData2,
                   isCurved: true,
-                  color: Colors.blue, // Color for the second line
-                  barWidth: 4,
-                  isStrokeCapRound: true,
-                  belowBarData: BarAreaData(show: false),
+                  barWidth: 3,
+                  color: Colors.red,
                 ),
+                // The blue line
                 LineChartBarData(
-                  spots: data3,
-                  isCurved: true,
-                  color: Colors.green, // Color for the third line
-                  barWidth: 4,
-                  isStrokeCapRound: true,
-                  belowBarData: BarAreaData(show: false),
-                ),
-                LineChartBarData(
-                  spots: data4,
-                  isCurved: true,
-                  color: Colors.purple, // Color for the fourth line
-                  barWidth: 4,
-                  isStrokeCapRound: true,
-                  belowBarData: BarAreaData(show: false),
-                ),
+                  spots: dummyData3,
+                  isCurved: false,
+                  barWidth: 3,
+                  color: Colors.blue,
+                )
               ],
             ),
           ),
