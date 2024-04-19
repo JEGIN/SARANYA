@@ -8,16 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
 
-class SingleLineChart extends StatefulWidget {
-  SingleLineChart({Key? key}) : super(key: key);
+class MultiLineScreenWidget extends StatefulWidget {
+  MultiLineScreenWidget({Key? key}) : super(key: key);
   // Labels Array
 
   @override
-  State<SingleLineChart> createState() => _SingleLineChartState();
+  State<MultiLineScreenWidget> createState() => _MultiLineScreenWidgetState();
 }
 
-class _SingleLineChartState extends State<SingleLineChart> {
-  List<FlSpot> singleLineChartData = [];
+class _MultiLineScreenWidgetState extends State<MultiLineScreenWidget> {
+  List<List<FlSpot>> multiLineChartData = [];
+  List<LineChartBarData> lineChartData = [];
+  List<Color> colors = [
+    Colors.pinkAccent,
+    Colors.blueAccent,
+    Colors.greenAccent
+  ];
 
   /// The variable `selectedIndex` to store the selected index of the chart.
   int selectedIndex = 0;
@@ -35,19 +41,21 @@ class _SingleLineChartState extends State<SingleLineChart> {
   /// The variable `period` to store the selected period of the chart.
   dynamic period = '1D';
 
+  List<Color> colorList = [Colors.green, Colors.red, Colors.blue];
+
+  List<LineChartBarData> lineChartDataNew = [];
+  List<List<FlSpot>> dataList = [];
+
   /// The initState function in Dart fetches data for a specified period
   /// and then calls the super class's initState method.
   @override
   void initState() {
     /// The fetchChartData function in Dart fetches data for a specified period.
     fetchChartData(period);
+    // chartFunction();
+
     super.initState();
   }
-
-  /// dummyData1 is a dummy data for testing purposes
-  final List<FlSpot> dummyData1 = List.generate(8, (index) {
-    return FlSpot(index.roundToDouble(), index * Random().nextDouble() * 10);
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,23 +67,14 @@ class _SingleLineChartState extends State<SingleLineChart> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: LineChart(
-              LineChartData(
+              child: LineChart(
+            LineChartData(
                 titlesData: FlTitlesData(show: false),
                 borderData: FlBorderData(show: false),
-                lineBarsData: [
-                  // The red line
-                  LineChartBarData(
-                    spots: singleLineChartData,
-                    // spots: dummyData1,
-                    isCurved: true,
-                    barWidth: 3,
-                    color: Colors.pinkAccent,
-                  ),
-                ],
-              ),
-            ),
-          ),
+                backgroundColor: Colors.transparent,
+                // lineBarsData: lineChartData
+                lineBarsData: lineChartDataNew),
+          )),
           const SizedBox(
             height: 50,
           ),
@@ -142,36 +141,104 @@ class _SingleLineChartState extends State<SingleLineChart> {
     debugPrint('inside API call');
     try {
       final response = await http.get(Uri.parse(
-          'https://cloudkitchen.macincode.in/api/v1/single_line_chart?period=$period'));
+          'https://cloudkitchen.macincode.in/api/v1/multi_line_chart?period=$period'));
       debugPrint(response.request!.url.toString());
       if (response.statusCode == 200) {
-        /// Request was successful, parse the response data
+        // Request was successful, parse the response data
         final responseData = json.decode(response.body);
         final List<dynamic> data = responseData['data'];
-        print("kkkkkkkkkkkk");
-        print(data);
-        print("kkkkkkkkkkkk");
 
-        /// Convert data to a list of PieChartSectionData
-        List<FlSpot> chartData = data.map((item) {
-          // Try to convert x and y values to double
+
+      
+
+  for (var subList in data) {
+    List<FlSpot> flSpotList = [];
+    for (var point in subList) {
+      // Convert the string values to double
+      double x = double.parse(point[0]);
+      double y = double.parse(point[1]);
+      
+      // Create an FlSpot object and add it to the list
+      FlSpot flSpot = FlSpot(x, y);
+      flSpotList.add(flSpot);
+    }
+    // Add the list of FlSpot objects to the final list
+    dataList.add(flSpotList);
+  }
+  
+ for (int i = 0; i < dataList.length; i++) {
+      LineChartBarData lineData = LineChartBarData(
+        isCurved: true,
+        barWidth: 3,
+        color: colorList[i],
+        spots: dataList[i],
+      );
+      // Add the line data to the list
+      lineChartDataNew.add(lineData);
+    }
+
+
         
-            double xValue = double.parse(item[0]);
-            double yValue = double.parse(item[1]);
-            // Return an FlSpot object with the parsed x and y values
-            return FlSpot(xValue, yValue);
-          
-        }).toList();
         setState(() {
-          singleLineChartData = chartData;
+
+        
         });
+       
       } else {
         // Request failed
         debugPrint('Request failed with status: ${response.statusCode}');
       }
-      debugPrint(singleLineChartData.toString());
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint('Error occurred: $e');
     }
+  }
+
+  chartFunction() {
+    /// Dummmy data for the chart
+    final List<FlSpot> dummyData1 = List.generate(8, (index) {
+      double value = index * Random().nextDouble() * 10;
+      String formattedValue = value.toStringAsFixed(2);
+      return FlSpot(index.roundToDouble(), double.parse(formattedValue));
+    });
+
+    // This will be used to draw the orange line
+    final List<FlSpot> dummyData2 = List.generate(8, (index) {
+      double value = index * Random().nextDouble() * 10;
+      String formattedValue = value.toStringAsFixed(2);
+      return FlSpot(index.roundToDouble(), double.parse(formattedValue));
+    });
+
+    // This will be used to draw the blue line
+    final List<FlSpot> dummyData3 = List.generate(8, (index) {
+      double value = index * Random().nextDouble() * 10;
+      String formattedValue = value.toStringAsFixed(2);
+      return FlSpot(index.roundToDouble(), double.parse(formattedValue));
+    });
+    print("dummyData1");
+    print(dummyData1);
+    print("dummyData2");
+    print(dummyData2);
+    print("dummyData3");
+    print(dummyData3);
+    lineChartDataNew.clear();
+    dataList = [dummyData1, dummyData2, dummyData3];
+    print("dataList");
+    print(dataList);
+
+
+    for (int i = 0; i < dataList.length; i++) {
+      LineChartBarData lineData = LineChartBarData(
+        isCurved: true,
+        barWidth: 3,
+        color: colorList[i],
+        spots: dataList[i],
+      );
+      // Add the line data to the list
+      lineChartDataNew.add(lineData);
+    }
+    print("gggggggggggggggggggg");
+    print(lineChartDataNew);
+    print("gggggggggggggggggggg");
+    return lineChartDataNew;
   }
 }
